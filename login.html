@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ateliê Digital - Login / Cadastro</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <!-- Lado Esquerdo: Identidade Visual -->
+        <div class="login-banner">
+            <h2>🧵 Ateliê & Linha</h2>
+            <p>Seu espaço de trabalho digital organizado para costura.</p>
+        </div>
+
+        <!-- Lado Direito: Formulário Dinâmico -->
+        <div class="login-box">
+            <!-- Abas para alternar entre Login e Cadastro -->
+            <div class="abas-login">
+                <button class="aba-btn ativa" onclick="alternarFormulario('login')">Entrar</button>
+                <button class="aba-btn" onclick="alternarFormulario('cadastro')">Cadastrar</button>
+            </div>
+
+            <!-- Formulário de Login -->
+            <form id="form-login" class="form-login active">
+                <div class="campo-grupo">
+                    <label for="email-login">E-mail Profissional</label>
+                    <input type="email" id="email-login" required placeholder="exemplo@atelie.com">
+                </div>
+                <div class="campo-grupo">
+                    <label for="senha-login">Sua Senha</label>
+                    <input type="password" id="senha-login" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-acesso">Acessar Painel</button>
+                <a href="#" class="link-esqueceu">Esqueceu a senha?</a>
+            </form>
+
+            <!-- Formulário de Cadastro -->
+            <form id="form-cadastro" class="form-login">
+                <div class="campo-grupo">
+                    <label for="nome-cadastro">Nome Completo / Ateliê</label>
+                    <input type="text" id="nome-cadastro" required placeholder="Ex: Maria Silva Costura">
+                </div>
+                <div class="campo-grupo">
+                    <label for="email-cadastro">E-mail</label>
+                    <input type="email" id="email-cadastro" required placeholder="seuemail@provedor.com">
+                </div>
+                <div class="campo-grupo">
+                    <label for="senha-cadastro">Criar Senha</label>
+                    <input type="password" id="senha-cadastro" required placeholder="Mínimo 6 caracteres">
+                </div>
+                <button type="submit" class="btn-acesso">Criar Minha Conta</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script simples para alternar entre as telas sem recarregar a página -->
+    <script>
+        function alternarFormulario(tipo) {
+            const formLogin = document.getElementById('form-login');
+            const formCadastro = document.getElementById('form-cadastro');
+            const botoes = document.querySelectorAll('.aba-btn');
+    
+            if (tipo === 'login') {
+                formLogin.classList.add('active');
+                formCadastro.classList.remove('active');
+                botoes[0].classList.add('ativa');
+                botoes[1].classList.remove('ativa');
+            } else {
+                formLogin.classList.remove('active');
+                formCadastro.classList.add('active');
+                botoes[0].classList.remove('ativa');
+                botoes[1].classList.add('ativa');
+            }
+        }
+    
+        // Login
+        document.getElementById("form-login").addEventListener("submit", function(e) {
+            e.preventDefault(); // impede o envio do formulário
+            window.location.href = "index.html";
+        });
+    
+        // Cadastro
+        document.getElementById("form-cadastro").addEventListener("submit", function(e) {
+            e.preventDefault(); // impede o envio do formulário
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

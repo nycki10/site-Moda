@@ -1,0 +1,508 @@
+/* ==========================
+   PALETA DE CORES
+========================== */
+
+:root{
+    --rosa:#B76E79;
+    --rosa-escuro:#9F5B67;
+    --bege:#F8F3F1;
+    --branco:#FFFFFF;
+    --cinza:#6B7280;
+    --sombra:rgba(0,0,0,.08);
+}
+
+/* ==========================
+   GERAL
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:linear-gradient(135deg,#fff7f8,#f9efef);
+
+    padding:40px;
+
+}
+
+/* ==========================
+   FOLHA
+========================== */
+
+.pagina{
+
+    max-width:1400px;
+
+    margin:auto;
+
+    background:var(--branco);
+
+    border-radius:30px;
+
+    padding:40px;
+
+    box-shadow:0 15px 40px var(--sombra);
+
+    position:relative;
+
+}
+
+/* ==========================
+   CABEÇALHO
+========================== */
+
+header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+    position:relative;
+
+}
+
+header h1{
+
+    color:var(--rosa);
+
+    font-size:42px;
+
+    margin-bottom:10px;
+
+}
+
+header p{
+
+    color:var(--cinza);
+
+    font-size:18px;
+
+}
+
+/* ==========================
+   LAÇOS
+========================== */
+
+.laco{
+
+    position:absolute;
+
+    font-size:55px;
+
+}
+
+.esquerdo{
+
+    left:20px;
+
+    top:-10px;
+
+}
+
+.direito{
+
+    right:20px;
+
+    top:-10px;
+
+}
+
+/* ==========================
+   MÁQUINA
+========================== */
+
+.decoracao{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    gap:25px;
+
+}
+
+.maquina{
+
+    font-size:60px;
+
+}
+
+.linha{
+
+    width:200px;
+
+    border-top:4px dashed var(--rosa);
+
+}
+
+/* ==========================
+   GRADE
+========================== */
+
+.grade{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.card{
+
+    background:#FFFDFD;
+
+    border:3px solid #f4d7de;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    transition:.35s;
+
+    position:relative;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 12px 25px rgba(183,110,121,.15);
+
+}
+
+/* ==========================
+   TITULOS
+========================== */
+
+.card h2{
+
+    color:var(--rosa);
+
+    margin-bottom:20px;
+
+    font-size:24px;
+
+    text-align:center;
+
+}
+
+/* ==========================
+   LISTAS
+========================== */
+
+ul{
+
+    list-style:none;
+
+}
+
+li{
+
+    margin-bottom:15px;
+
+}
+
+/* ==========================
+   CHECKBOX PERSONALIZADO
+========================== */
+
+label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    color:#555;
+
+}
+
+input[type="checkbox"]{
+
+    appearance:none;
+
+    width:24px;
+
+    height:24px;
+
+    border:2px solid var(--rosa);
+
+    border-radius:8px;
+
+    background:white;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+    position:relative;
+
+}
+
+input[type="checkbox"]:checked{
+
+    background:var(--rosa);
+
+}
+
+input[type="checkbox"]:checked::after{
+
+    content:"✓";
+
+    position:absolute;
+
+    color:white;
+
+    font-weight:bold;
+
+    left:5px;
+
+    top:0px;
+
+}
+
+/* ==========================
+   CROQUI
+========================== */
+
+.croqui{
+
+    width:170px;
+
+    height:320px;
+
+    margin:auto;
+
+    position:relative;
+
+}
+
+.cabeca{
+
+    width:45px;
+
+    height:45px;
+
+    background:#F8D9DF;
+
+    border-radius:50%;
+
+    margin:auto;
+
+}
+
+.tronco{
+
+    width:30px;
+
+    height:120px;
+
+    background:var(--rosa);
+
+    margin:auto;
+
+    border-radius:30px;
+
+}
+
+.braco{
+
+    width:90px;
+
+    height:8px;
+
+    background:var(--rosa);
+
+    position:absolute;
+
+    top:70px;
+
+}
+
+.braco.esquerdo{
+
+    left:-20px;
+
+    transform:rotate(20deg);
+
+}
+
+.braco.direito{
+
+    right:-20px;
+
+    transform:rotate(-20deg);
+
+}
+
+.perna{
+
+    width:8px;
+
+    height:120px;
+
+    background:var(--rosa);
+
+    position:absolute;
+
+    top:170px;
+
+}
+
+.perna.esquerda{
+
+    left:73px;
+
+    transform:rotate(10deg);
+
+}
+
+.perna.direita{
+
+    right:73px;
+
+    transform:rotate(-10deg);
+
+}
+
+/* ==========================
+   RODA DE CORES
+========================== */
+
+.cores{
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    margin:20px auto;
+
+    background:
+    conic-gradient(
+    red,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    purple,
+    red);
+
+    position:relative;
+
+}
+
+.centro{
+
+    width:70px;
+
+    height:70px;
+
+    background:white;
+
+    border-radius:50%;
+
+    position:absolute;
+
+    top:75px;
+
+    left:75px;
+
+}
+
+/* ==========================
+   FLORES DECORATIVAS
+========================== */
+
+.card::before{
+
+    content:"🌸";
+
+    position:absolute;
+
+    top:10px;
+
+    right:15px;
+
+    font-size:20px;
+
+}
+
+.card::after{
+
+    content:"🎀";
+
+    position:absolute;
+
+    bottom:10px;
+
+    left:15px;
+
+    font-size:18px;
+
+}
+
+/* ==========================
+   RESPONSIVO
+========================== */
+
+@media(max-width:1100px){
+
+.grade{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.grade{
+
+grid-template-columns:1fr;
+
+}
+
+header h1{
+
+font-size:30px;
+
+}
+
+.pagina{
+
+padding:20px;
+
+}
+
+.croqui{
+
+transform:scale(.85);
+
+}
+
+}
