@@ -4,20 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia de Modelagem | Ateliê & Linha</title>
+    <title>Guia de Modelagem Interativo | Ateliê & Linha</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/molde.css">
 </head>
 
 <body>
     <div class="pagina">
+        
+        <!-- NAVEGAÇÃO SUPERIOR -->
+        <nav class="nav-topo">
+            <a href="../index.html" class="btn-voltar">← Voltar ao Catálogo</a>
+        </nav>
+
+        <!-- CABEÇALHO -->
         <header>
             <div class="laco esquerdo">🎀</div>
-            <h1>✂️ Guia de Modelagem de Moda</h1>
-            <p>Ateliê & Linha • Guia de Estudos para Costura</p>
+            <h1>✂️ Guia & Estúdio de Modelagem de Moda</h1>
+            <p>Ateliê & Linha • Seleção Personalizada e Geração de Ilustrações com IA (OpenAI)</p>
             <div class="laco direito">🎀</div>
         </header>
 
@@ -26,120 +32,550 @@
             <div class="linha"></div>
         </section>
 
+        <!-- GRADE DE OPÇÕES E CROQUI -->
         <div class="grade">
-            <!-- CARD 1 -->
 
+            <!-- CARD 1: LINHAS -->
             <section class="card">
                 <h2>📏 Linhas</h2>
+                <p class="subtitulo-card">Escolha 1 estilo de acabamento</p>
 
                 <ul>
                     <li>
-                        <label>
-                            <input type="checkbox">
-                            <span>Reta</span>
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Reta" checked>
+                            <span>Linha Reta</span>
                         </label>
                     </li>
-
                     <li>
-
-                        <label>
-                            <input type="checkbox">
-                            <span>Curva</span>
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Curva">
+                            <span>Linha Curva</span>
                         </label>
                     </li>
-
                     <li>
-                        <label>
-                            <input type="checkbox">
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Espiral">
                             <span>Espiral</span>
                         </label>
                     </li>
-
                     <li>
-                        <label>
-                            <input type="checkbox">
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Tracejada">
                             <span>Tracejada</span>
                         </label>
                     </li>
-
                     <li>
-                        <label>
-                            <input type="checkbox">
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Zigue-zague">
                             <span>Zigue-zague</span>
                         </label>
                     </li>
                 </ul>
             </section>
 
-            <!-- CARD 2 -->
+            <!-- CARD 2: CROQUI INTERATIVO EM TEMPO REAL -->
+            <section class="card card-croqui">
+                <h2>👗 Croqui Interativo</h2>
+                <p class="subtitulo-card">Visualização Prévia</p>
 
-            <section class="card">
-                <h2>👗 Croqui</h2>
+                <div class="croqui-container">
+                    <svg viewBox="0 0 200 320" class="croqui-svg">
+                        <!-- Cabeça e Pescoço -->
+                        <circle cx="100" cy="32" r="18" fill="#F8D9DF" stroke="#D39EA7" stroke-width="1.5"/>
+                        <path d="M93 50 L107 50 L107 60 L93 60 Z" fill="#F8D9DF"/>
+                        
+                        <!-- Corpo / Tronco (Silhueta ajustável) -->
+                        <path id="croqui-tronco" d="M80 60 Q100 58 120 60 L115 110 L85 110 Z" fill="#F4D7DE" stroke="#B76E79" stroke-width="1.5"/>
+                        
+                        <!-- Braços -->
+                        <path d="M80 60 Q65 90 55 130" stroke="#F8D9DF" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <path d="M120 60 Q135 90 145 130" stroke="#F8D9DF" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        
+                        <!-- Pernas -->
+                        <path d="M90 200 L85 300" stroke="#F8D9DF" stroke-width="7" stroke-linecap="round"/>
+                        <path d="M110 200 L115 300" stroke="#F8D9DF" stroke-width="7" stroke-linecap="round"/>
 
-                <div class="croqui">
-                    <div class="cabeca"></div>
-                    <div class="tronco"></div>
-                    <div class="braco esquerdo"></div>
-                    <div class="braco direito"></div>
-                    <div class="perna esquerda"></div>
-                    <div class="perna direita"></div>
+                        <!-- Saia Visual Dinâmica (Formato e Cor alteráveis) -->
+                        <path id="croqui-saia" d="M85 110 Q100 112 115 110 L135 220 Q100 230 65 220 Z" fill="#B76E79" stroke="#9F5B67" stroke-width="2" transition="all 0.3s"/>
+                        
+                        <!-- Linhas Decorativas Dinâmicas sobre a Saia -->
+                        <path id="croqui-linhas-desenho" d="M85 110 L65 220 M115 110 L135 220" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+                    </svg>
+                </div>
+
+                <!-- Resumo das Escolhas Ativas -->
+                <div class="resumo-croqui">
+                    <span class="badge-tag" id="tag-saia">Saia: Evasê</span>
+                    <span class="badge-tag" id="tag-cor">Cor: Rosa</span>
+                    <span class="badge-tag" id="tag-tecido">Tecido: Seda</span>
+                    <span class="badge-tag" id="tag-silhueta">Silhueta: Ampulheta</span>
                 </div>
             </section>
 
-            <!-- CARD 3 -->
-
+            <!-- CARD 3: SAIAS -->
             <section class="card">
                 <h2>👗 Saias</h2>
+                <p class="subtitulo-card">Escolha 1 modelagem de saia</p>
 
                 <ul>
-                    <li><label><input type="checkbox"><span>Evasê</span></label></li>
-                    <li><label><input type="checkbox"><span>Godê</span></label></li>
-                    <li><label><input type="checkbox"><span>Lápis</span></label></li>
-                    <li><label><input type="checkbox"><span>Plissada</span></label></li>
-                    <li><label><input type="checkbox"><span>Envelope</span></label></li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="saia" value="Evasê" checked>
+                            <span>Saia Evasê</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="saia" value="Godê">
+                            <span>Saia Godê</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="saia" value="Lápis">
+                            <span>Saia Lápis</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="saia" value="Plissada">
+                            <span>Saia Plissada</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="saia" value="Envelope">
+                            <span>Saia Envelope</span>
+                        </label>
+                    </li>
                 </ul>
             </section>
 
-            <!-- CARD 4 -->
-
+            <!-- CARD 4: TECIDOS -->
             <section class="card">
                 <h2>🧵 Tecidos</h2>
+                <p class="subtitulo-card">Escolha 1 material</p>
 
                 <ul>
-                    <li><label><input type="checkbox"><span>Algodão</span></label></li>
-                    <li><label><input type="checkbox"><span>Linho</span></label></li>
-                    <li><label><input type="checkbox"><span>Seda</span></label></li>
-                    <li><label><input type="checkbox"><span>Jeans</span></label></li>
-                    <li><label><input type="checkbox"><span>Malha</span></label></li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="tecido" value="Algodão">
+                            <span>Algodão</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="tecido" value="Linho">
+                            <span>Linho</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="tecido" value="Seda" checked>
+                            <span>Seda</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="tecido" value="Jeans">
+                            <span>Jeans</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="tecido" value="Malha">
+                            <span>Malha</span>
+                        </label>
+                    </li>
                 </ul>
             </section>
 
-            <!-- CARD 5 -->
-
+            <!-- CARD 5: SILHUETAS -->
             <section class="card">
                 <h2>👤 Silhuetas</h2>
+                <p class="subtitulo-card">Escolha 1 formato corporal</p>
 
                 <ul>
-                    <li><label><input type="checkbox"><span>Ampulheta</span></label></li>
-                    <li><label><input type="checkbox"><span>Oval</span></label></li>
-                    <li><label><input type="checkbox"><span>Retângulo</span></label></li>
-                    <li><label><input type="checkbox"><span>Triângulo</span></label></li>
-                    <li><label><input type="checkbox"><span>Triângulo Invertido</span></label></li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="silhueta" value="Ampulheta" checked>
+                            <span>Ampulheta</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="silhueta" value="Oval">
+                            <span>Oval</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="silhueta" value="Retângulo">
+                            <span>Retângulo</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="silhueta" value="Triângulo">
+                            <span>Triângulo</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="silhueta" value="Triângulo Invertido">
+                            <span>Triângulo Invertido</span>
+                        </label>
+                    </li>
                 </ul>
             </section>
 
-            <!-- CARD 6 -->
-
+            <!-- CARD 6: PALETA E CÍRCULO DE CORES -->
             <section class="card">
-                <h2>🎨 Círculo de Cores</h2>
+                <h2>🎨 Cores</h2>
+                <p class="subtitulo-card">Clique para escolher a cor desejada</p>
 
-                <div class="cores">
-                    <div class="cor vermelho"></div>
-                    <div class="cor laranja"></div>
-                    <div class="cor amarelo"></div>
-                    <div class="cor verde"></div>
-                    <div class="cor azul"></div>
-                    <div class="cor roxo"></div>
-                    <div class="centro"></div>
+                <div class="seletor-cores">
+                    <!-- Roda de cores cônica interativa -->
+                    <div class="wheel-container" title="Clique no círculo de cores">
+                        <div class="cores" id="roda-cores">
+                            <div class="centro">🎨</div>
+                        </div>
+                    </div>
+
+                    <!-- Amostras de Cores Clicáveis -->
+                    <div class="cores-grid">
+                        <div class="cor-swatch active" data-color="#b76e79" data-name="Rosa" style="background-color: #b76e79;">Rosa</div>
+                        <div class="cor-swatch" data-color="#e63946" data-name="Vermelho" style="background-color: #e63946;">Vermelho</div>
+                        <div class="cor-swatch" data-color="#f4a261" data-name="Laranja" style="background-color: #f4a261;">Laranja</div>
+                        <div class="cor-swatch" data-color="#e9c46a" data-name="Amarelo" style="background-color: #e9c46a; color: #333;">Amarelo</div>
+                        <div class="cor-swatch" data-color="#2a9d8f" data-name="Verde" style="background-color: #2a9d8f;">Verde</div>
+                        <div class="cor-swatch" data-color="#457b9d" data-name="Azul" style="background-color: #457b9d;">Azul</div>
+                        <div class="cor-swatch" data-color="#7209b7" data-name="Roxo" style="background-color: #7209b7;">Roxo</div>
+                        <div class="cor-swatch" data-color="#2b2d42" data-name="Preto" style="background-color: #2b2d42;">Preto</div>
+                    </div>
+                </div>
+
+                <!-- Input radio escondido para guardar o estado da cor -->
+                <div style="display:none;">
+                    <input type="radio" name="cor" value="Rosa" data-hex="#b76e79" checked>
+                    <input type="radio" name="cor" value="Vermelho" data-hex="#e63946">
+                    <input type="radio" name="cor" value="Laranja" data-hex="#f4a261">
+                    <input type="radio" name="cor" value="Amarelo" data-hex="#e9c46a">
+                    <input type="radio" name="cor" value="Verde" data-hex="#2a9d8f">
+                    <input type="radio" name="cor" value="Azul" data-hex="#457b9d">
+                    <input type="radio" name="cor" value="Roxo" data-hex="#7209b7">
+                    <input type="radio" name="cor" value="Preto" data-hex="#2b2d42">
                 </div>
             </section>
+
+        </div>
+
+        <!-- SEÇÃO DE IA (OPENAI DALL-E INTEGRATION) -->
+        <section class="secao-ia">
+            <div class="secao-ia-header">
+                <h2>✨ Estúdio de Criação por IA (OpenAI DALL-E)</h2>
+                <p>O seu prompt é montado automaticamente a partir das escolhas acima. Clique para gerar a imagem realista da peça!</p>
+            </div>
+
+            <div class="grid-ia">
+                <!-- PAINEL ESQUERDO: CONFIGURAÇÃO DE PROMPT E CHAVE -->
+                <div class="painel-config-ia">
+                    
+                    <div class="grupo-input">
+                        <label for="openai-key">🔑 Sua Chave de API OpenAI:</label>
+                        <div class="input-key-wrapper">
+                            <input type="password" id="openai-key" value="" placeholder="sk-...">
+                            <button type="button" class="btn-toggle-key" id="btn-toggle-key" title="Mostrar/Ocultar Chave">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="openai-modelo">⚙️ Modelo de IA:</label>
+                        <select id="openai-modelo" class="select-modelo">
+                            <option value="gpt-image-1.5" selected>gpt-image-1.5 (Recomendado - Ativo na sua Chave)</option>
+                            <option value="gpt-image-2">gpt-image-2 (Alta Qualidade)</option>
+                            <option value="dall-e-3">dall-e-3 (Legado)</option>
+                            <option value="dall-e-2">dall-e-2 (Legado)</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-input">
+                        <label for="prompt-gerado">📝 Prompt Automático (Você pode editar se desejar):</label>
+                        <textarea id="prompt-gerado" class="prompt-textarea" rows="4"></textarea>
+                    </div>
+
+                    <button type="button" id="btn-gerar-ia" class="btn-gerar-ia">
+                        <span>✨ Gerar Ilustração com IA (DALL-E)</span>
+                    </button>
+                    
+                    <div id="status-mensagem" style="font-size: 13px; text-align: center; color: #b56c6c;"></div>
+                </div>
+
+                <!-- PAINEL DIREITO: RESULTADO DA IA -->
+                <div class="painel-resultado-ia">
+                    
+                    <!-- Estado Inicial (Placeholder) -->
+                    <div class="placeholder-resultado" id="placeholder-ia">
+                        <span>👗</span>
+                        <p>Sua ilustração de moda gerada por inteligência artificial aparecerá aqui.</p>
+                    </div>
+
+                    <!-- Estado de Carregamento -->
+                    <div class="loader-container" id="loader-ia">
+                        <div class="spinner"></div>
+                        <p style="color: var(--rosa-escuro); font-weight: 600;">Criando ilustração com DALL-E...</p>
+                        <span style="font-size: 12px; color: var(--cinza);">Isso pode levar de 5 a 15 segundos.</span>
+                    </div>
+
+                    <!-- Estado de Sucesso (Imagem Renderizada) -->
+                    <div class="imagem-gerada-container" id="container-imagem-ia">
+                        <img id="img-resultado-ia" class="img-ia-resultado" src="" alt="Ilustração Gerada por IA">
+                        <a id="btn-download-img" class="btn-download" href="#" target="_blank" download="molde-moda-ia.png">
+                            📥 Baixar Imagem em Alta Resolução
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // FORMALIZAÇÃO DAS ESCOLHAS E CROQUI DINÂMICO
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const inputsRadio = document.querySelectorAll('input[type="radio"]');
+            const swatches = document.querySelectorAll('.cor-swatch');
+            const promptTextarea = document.getElementById('prompt-gerado');
+            const btnGerarIA = document.getElementById('btn-gerar-ia');
+            const keyInput = document.getElementById('openai-key');
+            const btnToggleKey = document.getElementById('btn-toggle-key');
+            const statusMensagem = document.getElementById('status-mensagem');
+
+            // Elementos SVG do Croqui
+            const croquiSaia = document.getElementById('croqui-saia');
+            const croquiTronco = document.getElementById('croqui-tronco');
+            const croquiLinhas = document.getElementById('croqui-linhas-desenho');
+
+            // Badges de resumo
+            const tagSaia = document.getElementById('tag-saia');
+            const tagCor = document.getElementById('tag-cor');
+            const tagTecido = document.getElementById('tag-tecido');
+            const tagSilhueta = document.getElementById('tag-silhueta');
+
+            // Mapeamento de formatos de saia em caminhos SVG d=""
+            const formatosSaia = {
+                'Evasê': 'M85 110 Q100 112 115 110 L135 220 Q100 230 65 220 Z',
+                'Godê': 'M85 110 Q100 112 115 110 L155 225 Q100 245 45 225 Z',
+                'Lápis': 'M85 110 Q100 112 115 110 L110 220 Q100 222 90 220 Z',
+                'Plissada': 'M85 110 Q100 112 115 110 L140 220 Q100 230 60 220 Z',
+                'Envelope': 'M85 110 Q100 112 115 110 L135 220 L75 220 Z'
+            };
+
+            // Mapeamento de Silhuetas (Ajuste de tronco SVG)
+            const formatosSilhueta = {
+                'Ampulheta': 'M80 60 Q100 58 120 60 L112 85 Q100 88 88 85 L85 110 L115 110 Z',
+                'Oval': 'M75 60 Q100 50 125 60 L120 90 Q100 115 80 90 Z',
+                'Retângulo': 'M80 60 L120 60 L118 110 L82 110 Z',
+                'Triângulo': 'M85 60 L115 60 L125 110 L75 110 Z',
+                'Triângulo Invertido': 'M75 60 L125 60 L110 110 L90 110 Z'
+            };
+
+            // Mapeamento de Linhas (Desenho SVG)
+            const estilosLinha = {
+                'Reta': 'M85 110 L65 220 M115 110 L135 220 M100 110 L100 225',
+                'Curva': 'M85 110 Q70 165 65 220 M115 110 Q130 165 135 220',
+                'Espiral': 'M90 130 Q100 140 105 150 T95 170 T105 190',
+                'Tracejada': 'M85 110 L65 220 M115 110 L135 220 M100 110 L100 225',
+                'Zigue-zague': 'M85 110 L95 130 L85 150 L95 170 L85 190 L95 210'
+            };
+
+            // Função para ler escolhas atuais
+            function obterEscolhas() {
+                const linha = document.querySelector('input[name="linha"]:checked')?.value || 'Reta';
+                const saia = document.querySelector('input[name="saia"]:checked')?.value || 'Evasê';
+                const tecido = document.querySelector('input[name="tecido"]:checked')?.value || 'Seda';
+                const silhueta = document.querySelector('input[name="silhueta"]:checked')?.value || 'Ampulheta';
+                
+                const corRadio = document.querySelector('input[name="cor"]:checked');
+                const corNome = corRadio ? corRadio.value : 'Rosa';
+                const corHex = corRadio ? corRadio.getAttribute('data-hex') : '#b76e79';
+
+                return { linha, saia, tecido, silhueta, corNome, corHex };
+            }
+
+            // Atualiza o Croqui Visual SVG e os Badges
+            function atualizarCroqui() {
+                const e = obterEscolhas();
+
+                // Atualizar Saia SVG
+                if (formatosSaia[e.saia]) {
+                    croquiSaia.setAttribute('d', formatosSaia[e.saia]);
+                }
+                croquiSaia.setAttribute('fill', e.corHex);
+
+                // Atualizar Tronco/Silhueta SVG
+                if (formatosSilhueta[e.silhueta]) {
+                    croquiTronco.setAttribute('d', formatosSilhueta[e.silhueta]);
+                }
+
+                // Atualizar Estilo de Linha sobre a saia
+                if (estilosLinha[e.linha]) {
+                    croquiLinhas.setAttribute('d', estilosLinha[e.linha]);
+                    if (e.linha === 'Tracejada') {
+                        croquiLinhas.setAttribute('stroke-dasharray', '4,4');
+                    } else {
+                        croquiLinhas.removeAttribute('stroke-dasharray');
+                    }
+                }
+
+                // Atualizar Badges
+                tagSaia.textContent = `Saia: ${e.saia}`;
+                tagCor.textContent = `Cor: ${e.corNome}`;
+                tagTecido.textContent = `Tecido: ${e.tecido}`;
+                tagSilhueta.textContent = `Silhueta: ${e.silhueta}`;
+
+                // Atualizar Prompt
+                atualizarPrompt(e);
+            }
+
+            // Atualiza a Textarea de Prompt para a OpenAI DALL-E
+            function atualizarPrompt(e) {
+                const prompt = `Ilustração de moda profissional e realista de um vestido elegante, apresentando saia estilo ${e.saia}, confeccionada em tecido de ${e.tecido}, com silhueta corporal em formato ${e.silhueta}, na cor vibrante ${e.corNome}, com detalhes de alta costura em acabamento de linha ${e.linha}. Estilo desenho de ateliê de alta moda, iluminação de estúdio profissional, modelo manequim realista, 8k resolução.`;
+                promptTextarea.value = prompt;
+            }
+
+            // Escutar trocas nos Rádios
+            inputsRadio.forEach(radio => {
+                radio.addEventListener('change', atualizarCroqui);
+            });
+
+            // Escutar cliques nas amostras de cores
+            swatches.forEach(swatch => {
+                swatch.addEventListener('click', () => {
+                    swatches.forEach(s => s.classList.remove('active'));
+                    swatch.classList.add('active');
+
+                    const colorName = swatch.getAttribute('data-name');
+                    const radioCor = document.querySelector(`input[name="cor"][value="${colorName}"]`);
+                    if (radioCor) {
+                        radioCor.checked = true;
+                        atualizarCroqui();
+                    }
+                });
+            });
+
+            // Mostrar/Ocultar Chave API
+            btnToggleKey.addEventListener('click', () => {
+                if (keyInput.type === 'password') {
+                    keyInput.type = 'text';
+                    btnToggleKey.textContent = '🔒';
+                } else {
+                    keyInput.type = 'password';
+                    btnToggleKey.textContent = '👁️';
+                }
+            });
+
+            // GERAÇÃO DE IMAGEM VIA API OPENAI (DALL-E)
+            async function gerarImagemIA() {
+                const apiKey = keyInput.value.trim();
+                const prompt = promptTextarea.value.trim();
+                let modelo = document.getElementById('openai-modelo').value;
+
+                if (!apiKey) {
+                    alert('Por favor, informe uma chave de API válida da OpenAI.');
+                    return;
+                }
+
+                if (!prompt) {
+                    alert('O prompt de imagem não pode estar vazio.');
+                    return;
+                }
+
+                // Elementos da Interface de IA
+                const placeholder = document.getElementById('placeholder-ia');
+                const loader = document.getElementById('loader-ia');
+                const containerImg = document.getElementById('container-imagem-ia');
+                const imgResultado = document.getElementById('img-resultado-ia');
+                const btnDownload = document.getElementById('btn-download-img');
+
+                // Atualizar Estado visual para Carregamento
+                placeholder.style.display = 'none';
+                containerImg.style.display = 'none';
+                loader.style.display = 'flex';
+                btnGerarIA.disabled = true;
+                statusMensagem.textContent = `Enviando solicitação para a API da OpenAI (${modelo})...`;
+
+                async function fazerRequisicao(modelToUse) {
+                    const response = await fetch('https://api.openai.com/v1/images/generations', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}`
+                        },
+                        body: JSON.stringify({
+                            model: modelToUse,
+                            prompt: prompt,
+                            n: 1,
+                            size: '1024x1024'
+                        })
+                    });
+                    const data = await response.json();
+                    return { response, data };
+                }
+
+                try {
+                    let { response, data } = await fazerRequisicao(modelo);
+
+                    // Fallback automático para gpt-image-1.5 se o modelo informado não estiver ativo na chave
+                    if (!response.ok && data.error?.message?.includes('does not exist')) {
+                        statusMensagem.textContent = 'Modelo anterior indisponível. Alternando para gpt-image-1.5...';
+                        modelo = 'gpt-image-1.5';
+                        document.getElementById('openai-modelo').value = 'gpt-image-1.5';
+                        const fallbackResult = await fazerRequisicao('gpt-image-1.5');
+                        response = fallbackResult.response;
+                        data = fallbackResult.data;
+                    }
+
+                    if (!response.ok) {
+                        throw new Error(data.error?.message || 'Erro ao conectar à API da OpenAI.');
+                    }
+
+                    const firstItem = data.data[0];
+                    const imageUrl = firstItem.url || (firstItem.b64_json ? `data:image/png;base64,${firstItem.b64_json}` : '');
+
+                    if (!imageUrl) {
+                        throw new Error('A API não retornou uma imagem válida.');
+                    }
+
+                    // Renderizar Imagem Recebida (URL ou Base64)
+                    imgResultado.src = imageUrl;
+                    btnDownload.href = imageUrl;
+
+                    loader.style.display = 'none';
+                    containerImg.style.display = 'flex';
+                    statusMensagem.textContent = `✨ Ilustração criada com sucesso (${modelo})!`;
+
+                } catch (error) {
+                    console.error('Erro na requisição OpenAI:', error);
+                    loader.style.display = 'none';
+                    placeholder.style.display = 'block';
+                    statusMensagem.textContent = `❌ Erro: ${error.message}`;
+                    alert(`Falha ao gerar imagem: ${error.message}`);
+                } finally {
+                    btnGerarIA.disabled = false;
+                }
+            }
+
+            btnGerarIA.addEventListener('click', gerarImagemIA);
+
+            // Inicializar visualização
+            atualizarCroqui();
+        });
+    </script>
+</body>
+
+</html>

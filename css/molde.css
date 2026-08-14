@@ -1,14 +1,18 @@
 /* ==========================
-   PALETA DE CORES
+   PALETA DE CORES & VARIÁVEIS
 ========================== */
 
 :root{
     --rosa:#B76E79;
     --rosa-escuro:#9F5B67;
+    --rosa-claro:#FFF0F3;
     --bege:#F8F3F1;
     --branco:#FFFFFF;
     --cinza:#6B7280;
+    --cinza-escuro:#374151;
     --sombra:rgba(0,0,0,.08);
+    --sombra-forte:rgba(183,110,121,.25);
+    --gradiente-ia: linear-gradient(135deg, #b76e79 0%, #9f5b67 50%, #6b3e47 100%);
 }
 
 /* ==========================
@@ -23,33 +27,49 @@
 }
 
 body{
-
     background:linear-gradient(135deg,#fff7f8,#f9efef);
-
-    padding:40px;
-
+    padding:30px 20px;
+    min-height: 100vh;
 }
 
 /* ==========================
-   FOLHA
+   FOLHA PRINCIPAL
 ========================== */
 
 .pagina{
-
-    max-width:1400px;
-
+    max-width:1300px;
     margin:auto;
-
     background:var(--branco);
-
     border-radius:30px;
-
     padding:40px;
-
     box-shadow:0 15px 40px var(--sombra);
-
     position:relative;
+}
 
+/* NAVEGAÇÃO / BOTÃO VOLTAR */
+.nav-topo {
+    margin-bottom: 20px;
+}
+
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--rosa-escuro);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    background: var(--rosa-claro);
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: all 0.25s ease;
+    border: 1px solid #f4d7de;
+}
+
+.btn-voltar:hover {
+    background: var(--rosa);
+    color: var(--branco);
+    transform: translateX(-4px);
 }
 
 /* ==========================
@@ -57,452 +77,600 @@ body{
 ========================== */
 
 header{
-
     text-align:center;
-
     margin-bottom:40px;
-
     position:relative;
-
 }
 
 header h1{
-
     color:var(--rosa);
-
-    font-size:42px;
-
+    font-size:38px;
     margin-bottom:10px;
-
 }
 
 header p{
-
     color:var(--cinza);
-
-    font-size:18px;
-
+    font-size:16px;
 }
 
-/* ==========================
-   LAÇOS
-========================== */
-
+/* LAÇOS DECORATIVOS */
 .laco{
-
     position:absolute;
-
-    font-size:55px;
-
+    font-size:48px;
 }
 
 .esquerdo{
-
     left:20px;
-
     top:-10px;
-
 }
 
 .direito{
-
     right:20px;
-
     top:-10px;
-
 }
 
-/* ==========================
-   MÁQUINA
-========================== */
-
+/* MÁQUINA DE COSTURA DECORATIVA */
 .decoracao{
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     margin-bottom:35px;
-
     gap:25px;
-
 }
 
 .maquina{
-
-    font-size:60px;
-
+    font-size:50px;
 }
 
 .linha{
-
     width:200px;
-
     border-top:4px dashed var(--rosa);
-
 }
 
 /* ==========================
-   GRADE
+   GRADE DE OPÇÕES
 ========================== */
 
 .grade{
-
     display:grid;
-
     grid-template-columns:repeat(3,1fr);
-
     gap:25px;
-
 }
 
-/* ==========================
-   CARDS
-========================== */
-
+/* CARDS */
 .card{
-
     background:#FFFDFD;
-
-    border:3px solid #f4d7de;
-
+    border:2px solid #f4d7de;
     border-radius:20px;
-
     padding:25px;
-
-    transition:.35s;
-
+    transition:.3s ease;
     position:relative;
-
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover{
-
-    transform:translateY(-6px);
-
-    box-shadow:0 12px 25px rgba(183,110,121,.15);
-
+    border-color: var(--rosa);
+    box-shadow:0 12px 25px rgba(183,110,121,.12);
 }
-
-/* ==========================
-   TITULOS
-========================== */
 
 .card h2{
-
     color:var(--rosa);
-
-    margin-bottom:20px;
-
-    font-size:24px;
-
+    margin-bottom:18px;
+    font-size:22px;
     text-align:center;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-/* ==========================
-   LISTAS
-========================== */
+.subtitulo-card {
+    font-size: 13px;
+    color: var(--cinza);
+    text-align: center;
+    margin-top: -12px;
+    margin-bottom: 15px;
+}
 
+/* LISTAS DE OPÇÕES */
 ul{
-
     list-style:none;
-
 }
 
 li{
-
-    margin-bottom:15px;
-
+    margin-bottom:10px;
 }
 
-/* ==========================
-   CHECKBOX PERSONALIZADO
-========================== */
-
-label{
-
+/* OPÇÕES SELECIONÁVEIS (RADIO BOTÕES ESTILIZADOS) */
+.opcao-label {
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     cursor:pointer;
-
-    font-size:17px;
-
-    color:#555;
-
+    font-size:15px;
+    color:#4b5563;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1.5px solid transparent;
+    background-color: #faf7f7;
+    transition: all 0.25s ease;
 }
 
-input[type="checkbox"]{
+.opcao-label:hover {
+    background-color: var(--rosa-claro);
+    color: var(--rosa-escuro);
+    border-color: #f4d7de;
+}
 
+.opcao-label input[type="radio"] {
     appearance:none;
-
-    width:24px;
-
-    height:24px;
-
+    width:20px;
+    height:20px;
     border:2px solid var(--rosa);
-
-    border-radius:8px;
-
-    background:white;
-
-    transition:.3s;
-
-    cursor:pointer;
-
-    position:relative;
-
-}
-
-input[type="checkbox"]:checked{
-
-    background:var(--rosa);
-
-}
-
-input[type="checkbox"]:checked::after{
-
-    content:"✓";
-
-    position:absolute;
-
-    color:white;
-
-    font-weight:bold;
-
-    left:5px;
-
-    top:0px;
-
-}
-
-/* ==========================
-   CROQUI
-========================== */
-
-.croqui{
-
-    width:170px;
-
-    height:320px;
-
-    margin:auto;
-
-    position:relative;
-
-}
-
-.cabeca{
-
-    width:45px;
-
-    height:45px;
-
-    background:#F8D9DF;
-
     border-radius:50%;
-
-    margin:auto;
-
+    background:white;
+    transition:.25s ease;
+    cursor:pointer;
+    position:relative;
+    flex-shrink: 0;
 }
 
-.tronco{
-
-    width:30px;
-
-    height:120px;
-
+.opcao-label input[type="radio"]:checked {
     background:var(--rosa);
-
-    margin:auto;
-
-    border-radius:30px;
-
+    border-color: var(--rosa-escuro);
+    box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.2);
 }
 
-.braco{
-
-    width:90px;
-
-    height:8px;
-
-    background:var(--rosa);
-
+.opcao-label input[type="radio"]:checked::after {
+    content:"";
     position:absolute;
-
-    top:70px;
-
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    top: 4px;
+    left: 4px;
 }
 
-.braco.esquerdo{
-
-    left:-20px;
-
-    transform:rotate(20deg);
-
-}
-
-.braco.direito{
-
-    right:-20px;
-
-    transform:rotate(-20deg);
-
-}
-
-.perna{
-
-    width:8px;
-
-    height:120px;
-
-    background:var(--rosa);
-
-    position:absolute;
-
-    top:170px;
-
-}
-
-.perna.esquerda{
-
-    left:73px;
-
-    transform:rotate(10deg);
-
-}
-
-.perna.direita{
-
-    right:73px;
-
-    transform:rotate(-10deg);
-
+.opcao-label:has(input[type="radio"]:checked) {
+    background-color: #fff0f3;
+    border-color: var(--rosa);
+    color: var(--rosa-escuro);
+    font-weight: 600;
 }
 
 /* ==========================
-   RODA DE CORES
+   CROQUI VISUAL DINÂMICO
 ========================== */
+
+.card-croqui {
+    align-items: center;
+    background: linear-gradient(180deg, #ffffff 0%, #fff6f8 100%);
+}
+
+.croqui-container {
+    width: 220px;
+    height: 320px;
+    margin: 10px auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.croqui-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.06));
+}
+
+/* ELEMENTOS SVG DO CROQUI */
+#croqui-roupa {
+    transition: fill 0.35s ease, stroke 0.35s ease, d 0.35s ease;
+}
+
+#croqui-silhueta {
+    transition: transform 0.35s ease, d 0.35s ease;
+}
+
+#croqui-linhas {
+    transition: all 0.35s ease;
+}
+
+/* BADGES DE RESUMO NO CROQUI */
+.resumo-croqui {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+}
+
+.badge-tag {
+    font-size: 11px;
+    background: #f7eded;
+    color: var(--rosa-escuro);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+    border: 1px solid #ebd0d5;
+}
+
+/* ==========================
+   RODA / PALETA DE CORES INTERATIVA
+========================== */
+
+.seletor-cores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.cores-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.cor-swatch {
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.cor-swatch:hover {
+    transform: scale(1.08);
+}
+
+.cor-swatch.active {
+    border-color: var(--cinza-escuro);
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.4);
+}
+
+/* RODA CONICA DE CORES */
+.wheel-container {
+    position: relative;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 4px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
 .cores{
-
-    width:220px;
-
-    height:220px;
-
+    width:150px;
+    height:150px;
     border-radius:50%;
-
-    margin:20px auto;
-
-    background:
-    conic-gradient(
-    red,
-    orange,
-    yellow,
-    green,
-    cyan,
-    blue,
-    purple,
-    red);
-
+    background: conic-gradient(
+        #e63946 0deg 45deg,
+        #f4a261 45deg 90deg,
+        #e9c46a 90deg 135deg,
+        #2a9d8f 135deg 180deg,
+        #457b9d 180deg 225deg,
+        #7209b7 225deg 270deg,
+        #b76e79 270deg 315deg,
+        #2b2d42 315deg 360deg
+    );
     position:relative;
+    transition: transform 0.3s ease;
+}
 
+.cores:hover {
+    transform: rotate(15deg);
 }
 
 .centro{
-
-    width:70px;
-
-    height:70px;
-
+    width:50px;
+    height:50px;
     background:white;
-
     border-radius:50%;
-
     position:absolute;
-
-    top:75px;
-
-    left:75px;
-
+    top:50px;
+    left:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* ==========================
-   FLORES DECORATIVAS
+   SEÇÃO IA (OPENAI DALL-E STUDIO)
 ========================== */
 
+.secao-ia {
+    margin-top: 40px;
+    background: linear-gradient(135deg, #ffffff 0%, #fff7f9 100%);
+    border: 3px solid #f4d7de;
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(183, 110, 121, 0.1);
+}
+
+.secao-ia-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.secao-ia-header h2 {
+    color: var(--rosa-escuro);
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.secao-ia-header p {
+    color: var(--cinza);
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.grid-ia {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 900px) {
+    .grid-ia {
+        grid-template-columns: 1fr;
+    }
+}
+
+.painel-config-ia {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.grupo-input label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cinza-escuro);
+}
+
+.input-key-wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.input-key-wrapper input {
+    flex: 1;
+    padding: 12px;
+    border: 1.5px solid #e8bcbc;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: monospace;
+    background-color: #faf7f7;
+    color: var(--cinza-escuro);
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-key-wrapper input:focus {
+    border-color: var(--rosa);
+    box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.15);
+}
+
+.btn-toggle-key {
+    background: #f7eded;
+    border: 1px solid #e8bcbc;
+    border-radius: 10px;
+    padding: 0 14px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+}
+
+.btn-toggle-key:hover {
+    background: #ebd0d5;
+}
+
+.prompt-textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1.5px solid #e8bcbc;
+    border-radius: 12px;
+    font-size: 14px;
+    color: var(--cinza-escuro);
+    background-color: #fffdfd;
+    resize: vertical;
+    outline: none;
+    line-height: 1.5;
+}
+
+.prompt-textarea:focus {
+    border-color: var(--rosa);
+    box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.15);
+}
+
+.select-modelo {
+    padding: 12px;
+    border: 1.5px solid #e8bcbc;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    background: white;
+    cursor: pointer;
+}
+
+.btn-gerar-ia {
+    background: var(--gradiente-ia);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(159, 91, 103, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-gerar-ia:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(159, 91, 103, 0.4);
+}
+
+.btn-gerar-ia:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* PAINEL DE RESULTADO DA IA */
+.painel-resultado-ia {
+    background: white;
+    border: 2px dashed #e8bcbc;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 380px;
+    position: relative;
+    overflow: hidden;
+}
+
+.placeholder-resultado {
+    text-align: center;
+    color: var(--cinza);
+}
+
+.placeholder-resultado span {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* LOADER ANIMADO */
+.loader-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f4d7de;
+    border-top: 5px solid var(--rosa);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* IMAGEM GERADA */
+.imagem-gerada-container {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.img-ia-resultado {
+    width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.btn-download {
+    background-color: var(--rosa-escuro);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-download:hover {
+    background-color: var(--rosa);
+}
+
+/* FLORES DECORATIVAS */
 .card::before{
-
     content:"🌸";
-
     position:absolute;
-
     top:10px;
-
     right:15px;
-
-    font-size:20px;
-
+    font-size:18px;
+    opacity: 0.7;
 }
 
 .card::after{
-
     content:"🎀";
-
     position:absolute;
-
     bottom:10px;
-
     left:15px;
-
-    font-size:18px;
-
+    font-size:16px;
+    opacity: 0.7;
 }
 
 /* ==========================
-   RESPONSIVO
+   RESPONSIVIDADE
 ========================== */
 
 @media(max-width:1100px){
-
-.grade{
-
-grid-template-columns:1fr 1fr;
-
-}
-
+    .grade{
+        grid-template-columns:repeat(2, 1fr);
+    }
 }
 
 @media(max-width:700px){
-
-.grade{
-
-grid-template-columns:1fr;
-
-}
-
-header h1{
-
-font-size:30px;
-
-}
-
-.pagina{
-
-padding:20px;
-
-}
-
-.croqui{
-
-transform:scale(.85);
-
-}
-
+    .grade{
+        grid-template-columns:1fr;
+    }
+    header h1{
+        font-size:28px;
+    }
+    .pagina{
+        padding:20px;
+    }
+    .croqui-container{
+        transform:scale(.9);
+    }
 }
