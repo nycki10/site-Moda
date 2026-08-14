@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pagina-titulo">Detalhes do Molde | Ateliê & Linha</title>
+    <link rel="stylesheet" href="../css/detalhes-molde.css">
+    <!-- Scripts da Aplicação -->
+    <script src="../js/auth.js"></script>
+    <script src="../js/produtos.js"></script>
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGAÇÃO GLOBAL -->
+    <nav id="nav-global" class="nav-global"></nav>
+
+    <header>
+        <h1 id="header-titulo">🧵 Ateliê & Linha</h1>
+        <p id="header-subtitulo">Ficha Técnica & Guia de Costura</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="topo-detalhes">
+            <a href="../index.html" class="btn-voltar">← Voltar ao Catálogo</a>
+        </div>
+
+        <div class="card-detalhe">
+
+            <!-- IMAGEM DA PEÇA -->
+            <div class="imagem-container">
+                <img id="produto-img" src="" alt="Imagem do Molde">
+            </div>
+
+            <!-- INFORMAÇÕES TÉCNICAS E MEDIDAS -->
+            <div class="info-container">
+
+                <h2 id="produto-nome">Nome da Peça</h2>
+
+                <!-- TAGS / ESPECIFICAÇÕES -->
+                <div class="tags" id="produto-tags">
+                    <!-- Gerado via JS -->
+                </div>
+
+                <!-- DESCRIÇÃO -->
+                <div class="secao-info">
+                    <h3>📝 Descrição do Modelo</h3>
+                    <p id="produto-descricao">Carregando descrição do modelo...</p>
+                </div>
+
+                <!-- TABELA DE MEDIDAS -->
+                <div class="secao-info">
+                    <h3>📏 Tabela de Medidas Sugeridas (cm)</h3>
+                    <div class="tabela-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tamanho</th>
+                                    <th>Busto</th>
+                                    <th>Cintura</th>
+                                    <th>Quadril</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-medidas-corpo">
+                                <!-- Gerado via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- DICAS DE COSTURA & MATERIAIS -->
+                <div class="secao-info">
+                    <h3>✂️ Dicas de Corte & Costura</h3>
+                    <ul class="lista-dicas">
+                        <li><strong>Tecido Recomendado:</strong> <span id="detalhe-tecido">-</span></li>
+                        <li><strong>Acabamentos:</strong> <span id="detalhe-acabamento">-</span></li>
+                        <li><strong>Agulha Indicada:</strong> Nº 11 para tecidos leves / Nº 14 para médios.</li>
+                        <li><strong>Margem de Costura:</strong> Adicionar 1,5 cm em toda a volta do molde.</li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Renderizar Navegação Global
+            renderizarNavGlobal('../');
+
+            // Ler ID da URL (ex: detalhes.html?id=2)
+            const params = new URLSearchParams(window.location.search);
+            const produtoId = parseInt(params.get('id')) || 1;
+
+            // Buscar produto na base central PRODUTOS
+            const produto = PRODUTOS.find(p => p.id === produtoId) || PRODUTOS[0];
+
+            // Atualizar elementos da página
+            document.title = `${produto.nome} - Ficha Técnica | Ateliê & Linha`;
+            document.getElementById('header-subtitulo').textContent = `Ficha Técnica: ${produto.nome}`;
+            
+            const imgEl = document.getElementById('produto-img');
+            imgEl.src = produto.imagem;
+            imgEl.alt = produto.nome;
+
+            document.getElementById('produto-nome').textContent = produto.nome;
+            document.getElementById('produto-descricao').textContent = produto.descricao;
+            document.getElementById('detalhe-tecido').textContent = produto.detalhesTecido || produto.tecido;
+            document.getElementById('detalhe-acabamento').textContent = produto.detalhesAcabamento || produto.acabamento;
+
+            // Tags
+            const tagsContainer = document.getElementById('produto-tags');
+            tagsContainer.innerHTML = `
+                <span class="tag">Tecido: ${produto.tecido}</span>
+                <span class="tag">Dificuldade: ${produto.dificuldade}</span>
+                <span class="tag">${produto.acabamento}</span>
+            `;
+
+            // Tabela de Medidas
+            const tabelaCorpo = document.getElementById('tabela-medidas-corpo');
+            tabelaCorpo.innerHTML = produto.medidas.map(m => `
+                <tr>
+                    <td><strong>${m.tamanho}</strong></td>
+                    <td>${m.busto}</td>
+                    <td>${m.cintura}</td>
+                    <td>${m.quadril}</td>
+                </tr>
+            `).join('');
+        });
+    </script>
+</body>
+
+</html>

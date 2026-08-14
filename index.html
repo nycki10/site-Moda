@@ -3,216 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ateliê & Linha</title>
+    <title>Ateliê & Linha | Catálogo de Moldes e Modelagem de Moda</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <!-- Scripts da Aplicação -->
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/produtos.js"></script>
 </head>
 <body>
 
+<!-- BARRA DE NAVEGAÇÃO GLOBAL -->
+<nav id="nav-global" class="nav-global"></nav>
+
 <header>
     <h1>🧵 Ateliê & Linha</h1>
-    <p>Catálogo de Moldes e Inspirações Práticas para Costura</p>
+    <p>Catálogo de Moldes, Fichas Técnicas e Inspirações para Costura</p>
 </header>
 
 <div class="container">
 
-    <!-- VESTIDOS -->
-    <h2 class="categoria-titulo">👗 Vestidos</h2>
-
-    <div class="vitrine-roupas">
-
-        <!-- Vestido 1 -->
-        <div class="card-roupa">
-            <img src="https://i.pinimg.com/736x/bc/61/ff/bc61ff7ecf46c82d25eab5fcf1369aa2.jpg" alt="Vestido Evasê Floral">
-
-            <div class="detalhes-roupa">
-
-                <h3>Vestido Evasê Floral</h3>
-
-                <div class="tags">
-                    <span class="tag">Tecido: Algodão</span>
-                    <span class="tag">Dificuldade: Média</span>
-                    <span class="tag">Zíper Invisível</span>
-                </div>
-
-                <div class="botoes">
-                    <a href="pages/detalhes/detalhes-molde1.html" class="btn-ficha">
-                        Ver Detalhes do Molde
-                    </a>
-
-                    <a href="pages/molde.html" class="btn-ficha">
-                        Criar Molde
-                    </a>
-                </div>
-
-            </div>
+    <!-- BANNER GLOBAL DO ESTÚDIO DE IA E MODELAGEM -->
+    <section class="banner-estudio">
+        <div class="banner-estudio-info">
+            <h2>✨ Estúdio Interativo de Modelagem & Criação por IA</h2>
+            <p>Personalize golas, mangas, saias, tecidos e cores em tempo real no nosso croqui virtual, e gere ilustrações exclusivas através da inteligência artificial (OpenAI).</p>
         </div>
+        <a href="pages/molde.html" class="btn-estudio">
+            ✂️ Acessar Criador de Moldes com IA →
+        </a>
+    </section>
 
-        <!-- Vestido 2 -->
-        <div class="card-roupa">
-
-            <img src="https://i.pinimg.com/1200x/18/fa/55/18fa55ae01b7ea8a26e3580142100361.jpg" alt="Vestido de Festa">
-
-            <div class="detalhes-roupa">
-
-                <h3>Vestido de Festa Longo</h3>
-
-                <div class="tags">
-                    <span class="tag">Tecido: Cetim / Seda</span>
-                    <span class="tag">Dificuldade: Alta</span>
-                    <span class="tag">Com Forro</span>
-                </div>
-
-                <div class="botoes">
-
-                    <a href="pages/detalhes/detalhes-molde2.html" class="btn-ficha">
-                        Ver Detalhes do Molde
-                    </a>
-
-                    <a href="pages/molde.html" class="btn-ficha">
-                        Criar Molde
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Vestido 3 -->
-        <div class="card-roupa">
-
-            <img src="https://i.pinimg.com/736x/2f/76/ab/2f76ab356407430b0e4c78ad18c03345.jpg" alt="Vestido Midi">
-
-            <div class="detalhes-roupa">
-
-                <h3>Vestido Casual Midi</h3>
-
-                <div class="tags">
-                    <span class="tag">Tecido: Viscose</span>
-                    <span class="tag">Dificuldade: Fácil</span>
-                    <span class="tag">Lastex nas Costas</span>
-                </div>
-
-                <div class="botoes">
-
-                    <a href="pages/detalhes/detalhes-molde3.html" class="btn-ficha">
-                        Ver Detalhes do Molde
-                    </a>
-
-                    <a href="pages/molde.html" class="btn-ficha">
-                        Criar Molde
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
+    <!-- CONTAINER DINÂMICO DE CATEGORIAS E ROUPAS -->
+    <div id="catalogo-container">
+        <!-- Renderizado dinamicamente via JS a partir de produtos.js / API -->
     </div>
 
-    <!-- OUTRAS PEÇAS -->
-    <h2 class="categoria-titulo">👚 Outras Peças</h2>
-
-    <div class="vitrine-roupas">
-
-        <!-- Blusa -->
-        <div class="card-roupa">
-
-            <img src="https://i.pinimg.com/1200x/e3/f7/b1/e3f7b178ac74846002982e3bfb8bd6e0.jpg" alt="Blusa">
-
-            <div class="detalhes-roupa">
-
-                <h3>Blusa Gola Alta</h3>
-
-                <div class="tags">
-                    <span class="tag">Tecido: Malha</span>
-                    <span class="tag">Dificuldade: Fácil</span>
-                    <span class="tag">Manga Longa</span>
+    <!-- SEÇÃO "SOBRE O ATELIÊ & LINHA" -->
+    <section class="secao-sobre">
+        <div class="sobre-conteudo">
+            <h2>🧵 Sobre o Ateliê & Linha</h2>
+            <p>O <strong>Ateliê & Linha</strong> é uma plataforma digital desenvolvida para costureiras, modelistas, estilistas e entusiastas da moda. Nossa missão é facilitar o processo de criação de roupas, unindo a precisão dos moldes de costura tradicionais com a inovação da Inteligência Artificial.</p>
+            
+            <div class="sobre-grid">
+                <div class="sobre-card">
+                    <span class="sobre-icone">📐</span>
+                    <h3>Fichas Técnicas & Medidas</h3>
+                    <p>Consulte especificações de tecidos, graus de dificuldade, acabamentos e tabelas de medidas padronizadas para cada modelo.</p>
                 </div>
-
-                <div class="botoes">
-
-                    <a href="pages/detalhes/detalhes-molde4.html" class="btn-ficha">
-                        Ver Detalhes do Molde
-                    </a>
-
-                    <a href="pages/molde.html" class="btn-ficha">
-                        Criar Molde
-                    </a>
-
+                <div class="sobre-card">
+                    <span class="sobre-icone">👗</span>
+                    <h3>Croqui Interativo</h3>
+                    <p>Monte combinações de golas, mangas, comprimentos e cores em tempo real com visualização imediata no manequim virtual.</p>
                 </div>
-
+                <div class="sobre-card">
+                    <span class="sobre-icone">✨</span>
+                    <h3>Ilustrações por IA</h3>
+                    <p>Transforme suas seleções de moda em ilustrações realistas de alta definição através da tecnologia de ponta da OpenAI.</p>
+                </div>
             </div>
-
         </div>
-
-        <!-- Calça -->
-        <div class="card-roupa">
-
-            <img src="https://i.pinimg.com/736x/4a/91/cb/4a91cbb24acd4619fb7edf6c7b3ec20a.jpg" alt="Calça">
-
-            <div class="detalhes-roupa">
-
-                <h3>Calça Alfaiataria</h3>
-
-                <div class="tags">
-                    <span class="tag">Tecido: Linho</span>
-                    <span class="tag">Dificuldade: Alta</span>
-                    <span class="tag">Com Bolsos</span>
-                </div>
-
-                <div class="botoes">
-
-                    <a href="pages/detalhes/detalhes-molde5.html" class="btn-ficha">
-                        Ver Detalhes do Molde
-                    </a>
-
-                    <a href="pages/molde.html" class="btn-ficha">
-                        Criar Molde
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Saia -->
-        <div class="card-roupa">
-
-            <img src="https://i.pinimg.com/736x/3e/9d/a3/3e9da360e240bd4b73a890004c1271f8.jpg" alt="Saia">
-
-            <div class="detalhes-roupa">
-
-                <h3>Saia Longa Jens</h3>
-
-                <div class="tags">
-                    <span class="tag">Tecido: Tricoline</span>
-                    <span class="tag">Dificuldade: Fácil</span>
-                    <span class="tag">Cós Anatômico</span>
-                </div>
-
-                <div class="botoes">
-
-                    <a href="pages/detalhes/detalhes-molde6.html" class="btn-ficha">
-                        Ver Detalhes do Molde
-                    </a>
-
-                    <a href="pages/molde.html" class="btn-ficha">
-                        Criar Molde
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
+    </section>
 
 </div>
+
+<!-- MODAL DE CADASTRO DE NOVO MOLDE (ADMIN) -->
+<div id="modal-novo-produto" class="modal-backdrop">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h2>🛡️ Cadastrar Novo Molde no Catálogo (Admin)</h2>
+            <button onclick="fecharModalNovoProduto()" class="btn-fechar-modal">✕</button>
+        </div>
+
+        <form id="form-novo-produto" class="form-grid-modal">
+            <div class="campo-grupo col-full">
+                <label for="admin-nome">Nome da Peça / Molde:</label>
+                <input type="text" id="admin-nome" required placeholder="Ex: Vestido Tubinho Elegante">
+            </div>
+
+            <div class="campo-grupo">
+                <label for="admin-categoria">Categoria:</label>
+                <select id="admin-categoria">
+                    <option value="Vestidos">Vestidos</option>
+                    <option value="Outras Peças">Outras Peças</option>
+                </select>
+            </div>
+
+            <div class="campo-grupo">
+                <label for="admin-tecido">Tecido Recomendado:</label>
+                <input type="text" id="admin-tecido" required placeholder="Ex: Tricoline / Viscose">
+            </div>
+
+            <div class="campo-grupo">
+                <label for="admin-dificuldade">Nível de Dificuldade:</label>
+                <select id="admin-dificuldade">
+                    <option value="Fácil">Fácil</option>
+                    <option value="Média" selected>Média</option>
+                    <option value="Alta">Alta</option>
+                </select>
+            </div>
+
+            <div class="campo-grupo">
+                <label for="admin-acabamento">Acabamento:</label>
+                <input type="text" id="admin-acabamento" required placeholder="Ex: Zíper Invisível">
+            </div>
+
+            <div class="campo-grupo col-full">
+                <label for="admin-imagem">URL da Imagem da Peça:</label>
+                <input type="url" id="admin-imagem" required placeholder="https://i.pinimg.com/...">
+            </div>
+
+            <div class="campo-grupo col-full">
+                <label for="admin-descricao">Descrição Técnica:</label>
+                <textarea id="admin-descricao" rows="3" required placeholder="Detalhes do corte, drapeado, fendas e inspiração do modelo..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-salvar-produto col-full">
+                💾 Salvar Molde no Banco de Dados (API)
+            </button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Ateliê & Linha • Todos os direitos reservados. Feito com paixão pela moda e tecnologia.</p>
+</footer>
+
+<script>
+    function abrirModalNovoProduto() {
+        document.getElementById('modal-novo-produto').classList.add('active');
+    }
+
+    function fecharModalNovoProduto() {
+        document.getElementById('modal-novo-produto').classList.remove('active');
+    }
+
+    async function renderizarCatalogo() {
+        const container = document.getElementById('catalogo-container');
+        container.innerHTML = '<p style="text-align:center; padding:20px; color:#b56c6c;">Carregando catálogo de moldes...</p>';
+
+        // Carregar produtos da API MySQL (ou fallback local)
+        const produtosLista = await carregarProdutosAPI();
+
+        if (!produtosLista || !produtosLista.length) {
+            container.innerHTML = '<p style="text-align:center; padding:20px;">Nenhum produto encontrado no catálogo.</p>';
+            return;
+        }
+
+        // Agrupar produtos por categoria
+        const categorias = {};
+        produtosLista.forEach(produto => {
+            if (!categorias[produto.categoria]) {
+                categorias[produto.categoria] = [];
+            }
+            categorias[produto.categoria].push(produto);
+        });
+
+        // Ícones por categoria
+        const iconesCategoria = {
+            'Vestidos': '👗',
+            'Outras Peças': '👚'
+        };
+
+        // Montar HTML dinâmico
+        let htmlFinal = '';
+
+        for (const [categoriaNome, produtos] of Object.entries(categorias)) {
+            const icone = iconesCategoria[categoriaNome] || '✂️';
+            
+            htmlFinal += `
+                <h2 class="categoria-titulo">${icone} ${categoriaNome}</h2>
+                <div class="vitrine-roupas">
+            `;
+
+            produtos.forEach(p => {
+                htmlFinal += `
+                    <div class="card-roupa">
+                        <img src="${p.imagem}" alt="${p.nome}">
+
+                        <div class="detalhes-roupa">
+                            <h3>${p.nome}</h3>
+
+                            <div class="tags">
+                                <span class="tag">Tecido: ${p.tecido}</span>
+                                <span class="tag">Dificuldade: ${p.dificuldade}</span>
+                                <span class="tag">${p.acabamento}</span>
+                            </div>
+
+                            <div class="botoes">
+                                <a href="pages/detalhes.html?id=${p.id}" class="btn-ficha">
+                                    Ver Detalhes do Molde
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            htmlFinal += `</div>`;
+        }
+
+        container.innerHTML = htmlFinal;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Renderizar Navegação Global
+        renderizarNavGlobal('');
+
+        // Renderizar Catálogo inicial
+        renderizarCatalogo();
+
+        // Handler de envio do novo produto (Admin)
+        document.getElementById('form-novo-produto').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const novoItem = {
+                nome: document.getElementById('admin-nome').value,
+                categoria: document.getElementById('admin-categoria').value,
+                imagem: document.getElementById('admin-imagem').value,
+                tecido: document.getElementById('admin-tecido').value,
+                dificuldade: document.getElementById('admin-dificuldade').value,
+                acabamento: document.getElementById('admin-acabamento').value,
+                descricao: document.getElementById('admin-descricao').value,
+                medidas: [
+                    { tamanho: "P", busto: "88 cm", cintura: "68 cm", quadril: "94 cm" },
+                    { tamanho: "M", busto: "92 cm", cintura: "72 cm", quadril: "98 cm" },
+                    { tamanho: "G", busto: "98 cm", cintura: "78 cm", quadril: "104 cm" }
+                ]
+            };
+
+            await cadastrarProdutoAPI(novoItem);
+            fecharModalNovoProduto();
+            document.getElementById('form-novo-produto').reset();
+            alert(`Novo molde "${novoItem.nome}" cadastrado com sucesso!`);
+            renderizarCatalogo();
+        });
+    });
+</script>
 
 </body>
 </html>

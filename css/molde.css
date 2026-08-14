@@ -36,8 +36,105 @@ body{
    FOLHA PRINCIPAL
 ========================== */
 
+/* BARRA DE NAVEGAÇÃO GLOBAL */
+.nav-global {
+    background: #ffffff;
+    border-bottom: 2px solid #f4d7de;
+    padding: 12px 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    margin-bottom: 25px;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.nav-logo {
+    text-decoration: none;
+    color: #b56c6c;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-link {
+    color: #614646;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background: #fff0f3;
+    color: #b56c6c;
+}
+
+.btn-nav-login {
+    background: #b56c6c;
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.btn-nav-login:hover {
+    background: #9c5454;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff0f3;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #f4d7de;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #b56c6c;
+}
+
+.btn-logout {
+    background: #b56c6c;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-logout:hover {
+    background: #9c5454;
+}
+
 .pagina{
-    max-width:1300px;
+    max-width:1400px;
     margin:auto;
     background:var(--branco);
     border-radius:30px;
@@ -173,13 +270,22 @@ header p{
     margin-bottom: 15px;
 }
 
+.subgrupo-titulo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--rosa-escuro);
+    margin: 12px 0 8px 0;
+    border-bottom: 1px dashed #f4d7de;
+    padding-bottom: 4px;
+}
+
 /* LISTAS DE OPÇÕES */
 ul{
     list-style:none;
 }
 
 li{
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 /* OPÇÕES SELECIONÁVEIS (RADIO BOTÕES ESTILIZADOS) */
@@ -188,9 +294,9 @@ li{
     align-items:center;
     gap:12px;
     cursor:pointer;
-    font-size:15px;
+    font-size:14px;
     color:#4b5563;
-    padding: 10px 14px;
+    padding: 8px 12px;
     border-radius: 12px;
     border: 1.5px solid transparent;
     background-color: #faf7f7;
@@ -205,8 +311,8 @@ li{
 
 .opcao-label input[type="radio"] {
     appearance:none;
-    width:20px;
-    height:20px;
+    width:18px;
+    height:18px;
     border:2px solid var(--rosa);
     border-radius:50%;
     background:white;
@@ -225,8 +331,8 @@ li{
 .opcao-label input[type="radio"]:checked::after {
     content:"";
     position:absolute;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background: white;
     border-radius: 50%;
     top: 4px;
@@ -240,6 +346,27 @@ li{
     font-weight: 600;
 }
 
+/* AMOSTRAS VISUAIS DE TEXTURA DE TECIDO */
+.opcao-tecido {
+    justify-content: space-between;
+}
+
+.preview-textura {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid #d39ea7;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.textura-seda { background: linear-gradient(135deg, #e6c5cc 0%, #ffffff 50%, #b76e79 100%); }
+.textura-algodao { background: #fdfbf7; border-style: dashed; }
+.textura-linho { background: repeating-linear-gradient(45deg, #f4efe9, #f4efe9 2px, #e8dfd5 2px, #e8dfd5 4px); }
+.textura-jeans { background: linear-gradient(135deg, #3a5a40, #344e41); }
+.textura-malha { background: repeating-linear-gradient(0deg, #eae2b7, #eae2b7 2px, #d8e2dc 2px, #d8e2dc 4px); }
+.textura-veludo { background: radial-gradient(circle, #581845, #900c3f); }
+.textura-tule { background: radial-gradient(circle, #ffffff 30%, #f4d7de 70%); border-style: dotted; }
+
 /* ==========================
    CROQUI VISUAL DINÂMICO
 ========================== */
@@ -247,12 +374,13 @@ li{
 .card-croqui {
     align-items: center;
     background: linear-gradient(180deg, #ffffff 0%, #fff6f8 100%);
+    grid-row: span 2;
 }
 
 .croqui-container {
-    width: 220px;
-    height: 320px;
-    margin: 10px auto;
+    width: 240px;
+    height: 360px;
+    margin: 15px auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -263,23 +391,15 @@ li{
 .croqui-svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.06));
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.08));
 }
 
 /* ELEMENTOS SVG DO CROQUI */
-#croqui-roupa {
+#croqui-saia, #croqui-tronco, #croqui-gola, #croqui-mangas-esq, #croqui-mangas-dir {
     transition: fill 0.35s ease, stroke 0.35s ease, d 0.35s ease;
 }
 
-#croqui-silhueta {
-    transition: transform 0.35s ease, d 0.35s ease;
-}
-
-#croqui-linhas {
-    transition: all 0.35s ease;
-}
-
-/* BADGES DE RESUMO NO CROQUI */
+/* RESUMO DAS ESCOLHAS NO CROQUI */
 .resumo-croqui {
     width: 100%;
     margin-top: 15px;
@@ -293,14 +413,14 @@ li{
     font-size: 11px;
     background: #f7eded;
     color: var(--rosa-escuro);
-    padding: 3px 8px;
+    padding: 4px 10px;
     border-radius: 12px;
     font-weight: 500;
     border: 1px solid #ebd0d5;
 }
 
 /* ==========================
-   RODA / PALETA DE CORES INTERATIVA
+   SELETOR DE CORES & COLOR PICKER
 ========================== */
 
 .seletor-cores {
@@ -310,28 +430,67 @@ li{
     gap: 15px;
 }
 
+.color-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #faf7f7;
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: 1.5px solid #f4d7de;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.color-picker-wrapper label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cinza-escuro);
+}
+
+.input-color-custom {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid var(--rosa);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    background: none;
+    padding: 0;
+}
+
+.input-color-custom::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.input-color-custom::-webkit-color-swatch {
+    border: none;
+    border-radius: 8px;
+}
+
 .cores-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 8px;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .cor-swatch {
-    height: 40px;
-    border-radius: 10px;
+    height: 36px;
+    border-radius: 8px;
     cursor: pointer;
     border: 2px solid transparent;
     transition: transform 0.2s ease, border-color 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     color: white;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .cor-swatch:hover {
@@ -344,55 +503,8 @@ li{
     box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.4);
 }
 
-/* RODA CONICA DE CORES */
-.wheel-container {
-    position: relative;
-    cursor: pointer;
-    border-radius: 50%;
-    padding: 4px;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-.cores{
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    background: conic-gradient(
-        #e63946 0deg 45deg,
-        #f4a261 45deg 90deg,
-        #e9c46a 90deg 135deg,
-        #2a9d8f 135deg 180deg,
-        #457b9d 180deg 225deg,
-        #7209b7 225deg 270deg,
-        #b76e79 270deg 315deg,
-        #2b2d42 315deg 360deg
-    );
-    position:relative;
-    transition: transform 0.3s ease;
-}
-
-.cores:hover {
-    transform: rotate(15deg);
-}
-
-.centro{
-    width:50px;
-    height:50px;
-    background:white;
-    border-radius:50%;
-    position:absolute;
-    top:50px;
-    left:50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-}
-
 /* ==========================
-   SEÇÃO IA (OPENAI DALL-E STUDIO)
+   SEÇÃO DE IA (OPENAI STUDIO)
 ========================== */
 
 .secao-ia {
@@ -434,6 +546,9 @@ li{
     .grid-ia {
         grid-template-columns: 1fr;
     }
+    .card-croqui {
+        grid-row: auto;
+    }
 }
 
 .painel-config-ia {
@@ -454,43 +569,6 @@ li{
     color: var(--cinza-escuro);
 }
 
-.input-key-wrapper {
-    display: flex;
-    gap: 8px;
-}
-
-.input-key-wrapper input {
-    flex: 1;
-    padding: 12px;
-    border: 1.5px solid #e8bcbc;
-    border-radius: 10px;
-    font-size: 14px;
-    font-family: monospace;
-    background-color: #faf7f7;
-    color: var(--cinza-escuro);
-    outline: none;
-    transition: border-color 0.2s;
-}
-
-.input-key-wrapper input:focus {
-    border-color: var(--rosa);
-    box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.15);
-}
-
-.btn-toggle-key {
-    background: #f7eded;
-    border: 1px solid #e8bcbc;
-    border-radius: 10px;
-    padding: 0 14px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.2s;
-}
-
-.btn-toggle-key:hover {
-    background: #ebd0d5;
-}
-
 .prompt-textarea {
     width: 100%;
     padding: 14px;
@@ -507,16 +585,6 @@ li{
 .prompt-textarea:focus {
     border-color: var(--rosa);
     box-shadow: 0 0 0 3px rgba(183, 110, 121, 0.15);
-}
-
-.select-modelo {
-    padding: 12px;
-    border: 1.5px solid #e8bcbc;
-    border-radius: 10px;
-    font-size: 14px;
-    outline: none;
-    background: white;
-    cursor: pointer;
 }
 
 .btn-gerar-ia {

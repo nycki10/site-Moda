@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ateliê Digital - Login / Cadastro</title>
+    <title>Ateliê & Linha - Login / Cadastro</title>
     <link rel="stylesheet" href="../css/login.css">
+    <!-- Scripts da Aplicação -->
+    <script src="../js/config.js"></script>
+    <script src="../js/auth.js"></script>
 </head>
 <body>
+
+    <div style="max-width: 900px; margin: 20px auto 0 auto;">
+        <a href="../index.html" class="btn-voltar" style="display: inline-flex; align-items: center; gap: 6px; color: #b56c6c; text-decoration: none; font-weight: 600; font-size: 14px; background: #fff0f3; padding: 8px 18px; border-radius: 20px; border: 1px solid #f4d7de;">← Voltar ao Catálogo</a>
+    </div>
 
     <div class="login-container">
         <!-- Lado Esquerdo: Identidade Visual -->
         <div class="login-banner">
             <h2>🧵 Ateliê & Linha</h2>
-            <p>Seu espaço de trabalho digital organizado para costura.</p>
+            <p>Seu espaço de trabalho digital organizado para costura, modelagem e criação por IA.</p>
         </div>
 
         <!-- Lado Direito: Formulário Dinâmico -->
@@ -20,7 +27,7 @@
             <!-- Abas para alternar entre Login e Cadastro -->
             <div class="abas-login">
                 <button class="aba-btn ativa" onclick="alternarFormulario('login')">Entrar</button>
-                <button class="aba-btn" onclick="alternarFormulario('cadastro')">Cadastrar</button>
+                <button class="aba-btn" onclick="alternarFormulario('cadastro')">Criar Conta</button>
             </div>
 
             <!-- Formulário de Login -->
@@ -33,8 +40,8 @@
                     <label for="senha-login">Sua Senha</label>
                     <input type="password" id="senha-login" required placeholder="••••••••">
                 </div>
-                <button type="submit" class="btn-acesso">Acessar Painel</button>
-                <a href="#" class="link-esqueceu">Esqueceu a senha?</a>
+                <button type="submit" class="btn-acesso" id="btn-submit-login">Acessar Painel</button>
+                <a href="#" class="link-esqueceu" onclick="alert('Instruções de recuperação enviadas para o seu e-mail!'); return false;">Esqueceu a senha?</a>
             </form>
 
             <!-- Formulário de Cadastro -->
@@ -51,12 +58,11 @@
                     <label for="senha-cadastro">Criar Senha</label>
                     <input type="password" id="senha-cadastro" required placeholder="Mínimo 6 caracteres">
                 </div>
-                <button type="submit" class="btn-acesso">Criar Minha Conta</button>
+                <button type="submit" class="btn-acesso" id="btn-submit-cadastro">Criar Minha Conta no Ateliê</button>
             </form>
         </div>
     </div>
 
-    <!-- Script simples para alternar entre as telas sem recarregar a página -->
     <script>
         function alternarFormulario(tipo) {
             const formLogin = document.getElementById('form-login');
@@ -76,16 +82,48 @@
             }
         }
     
-        // Login
-        document.getElementById("form-login").addEventListener("submit", function(e) {
-            e.preventDefault(); // impede o envio do formulário
-            window.location.href = "../index.html";
+        // Login via API (Express/MySQL) com fallback
+        document.getElementById("form-login").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-login');
+            btn.disabled = true;
+            btn.textContent = "Conectando...";
+
+            const email = document.getElementById('email-login').value;
+            const senha = document.getElementById('senha-login').value;
+            
+            const res = await realizarLoginAPI(email, senha);
+            if (res.ok) {
+                const u = res.user;
+                alert(`Seja bem-vindo(a) de volta, ${u.nome || email}!`);
+                window.location.href = "../index.html";
+            } else {
+                alert('Erro ao realizar login. Tente novamente.');
+                btn.disabled = false;
+                btn.textContent = "Acessar Painel";
+            }
         });
     
-        // Cadastro
-        document.getElementById("form-cadastro").addEventListener("submit", function(e) {
-            e.preventDefault(); // impede o envio do formulário
-            window.location.href = "../index.html";
+        // Cadastro via API (Express/MySQL com role: 'user') com fallback
+        document.getElementById("form-cadastro").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-cadastro');
+            btn.disabled = true;
+            btn.textContent = "Criando conta...";
+
+            const nome = document.getElementById('nome-cadastro').value || "Costureira";
+            const email = document.getElementById('email-cadastro').value;
+            const senha = document.getElementById('senha-cadastro').value;
+            
+            const res = await realizarCadastroAPI(nome, email, senha);
+            if (res.ok) {
+                alert(`Conta criada com sucesso! Bem-vindo(a), ${nome}!`);
+                window.location.href = "../index.html";
+            } else {
+                alert('Erro ao criar conta. Tente novamente.');
+                btn.disabled = false;
+                btn.textContent = "Criar Minha Conta no Ateliê";
+            }
         });
     </script>
 </body>

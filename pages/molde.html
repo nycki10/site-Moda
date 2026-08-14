@@ -4,26 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia de Modelagem Interativo | Ateliê & Linha</title>
+    <title>Estúdio Interativo de Modelagem | Ateliê & Linha</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/molde.css">
+    <!-- Scripts de Configuração e Autenticação -->
+    <script src="../js/auth.js"></script>
+    <script src="../js/config.js"></script>
 </head>
 
 <body>
     <div class="pagina">
         
-        <!-- NAVEGAÇÃO SUPERIOR -->
-        <nav class="nav-topo">
-            <a href="../index.html" class="btn-voltar">← Voltar ao Catálogo</a>
-        </nav>
+        <!-- BARRA DE NAVEGAÇÃO GLOBAL -->
+        <nav id="nav-global" class="nav-global"></nav>
 
         <!-- CABEÇALHO -->
         <header>
             <div class="laco esquerdo">🎀</div>
-            <h1>✂️ Guia & Estúdio de Modelagem de Moda</h1>
-            <p>Ateliê & Linha • Seleção Personalizada e Geração de Ilustrações com IA (OpenAI)</p>
+            <h1>✂️ Estúdio & Guia de Modelagem de Moda</h1>
+            <p>Ateliê & Linha • Seleção Personalizada e Geração de Ilustrações Exclusivas com IA</p>
             <div class="laco direito">🎀</div>
         </header>
 
@@ -35,40 +36,74 @@
         <!-- GRADE DE OPÇÕES E CROQUI -->
         <div class="grade">
 
-            <!-- CARD 1: LINHAS -->
+            <!-- CARD 1: DECOTES & MANGAS -->
             <section class="card">
-                <h2>📏 Linhas</h2>
-                <p class="subtitulo-card">Escolha 1 estilo de acabamento</p>
-
+                <h2>👗 Golas & Mangas</h2>
+                
+                <p class="subgrupo-titulo">Decote / Gola</p>
                 <ul>
                     <li>
                         <label class="opcao-label">
-                            <input type="radio" name="linha" value="Reta" checked>
-                            <span>Linha Reta</span>
+                            <input type="radio" name="gola" value="Tomara que Caia">
+                            <span>Tomara que Caia</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
-                            <input type="radio" name="linha" value="Curva">
-                            <span>Linha Curva</span>
+                            <input type="radio" name="gola" value="Decote V" checked>
+                            <span>Decote V</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
-                            <input type="radio" name="linha" value="Espiral">
-                            <span>Espiral</span>
+                            <input type="radio" name="gola" value="Gola Alta">
+                            <span>Gola Alta</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
-                            <input type="radio" name="linha" value="Tracejada">
-                            <span>Tracejada</span>
+                            <input type="radio" name="gola" value="Decote Coração">
+                            <span>Decote Coração</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
-                            <input type="radio" name="linha" value="Zigue-zague">
-                            <span>Zigue-zague</span>
+                            <input type="radio" name="gola" value="Decote Canoa">
+                            <span>Decote Canoa</span>
+                        </label>
+                    </li>
+                </ul>
+
+                <p class="subgrupo-titulo">Estilo de Manga</p>
+                <ul>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="manga" value="Sem Manga" checked>
+                            <span>Sem Manga</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="manga" value="Manga Curta">
+                            <span>Manga Curta</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="manga" value="Manga Bufante">
+                            <span>Manga Bufante</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="manga" value="Manga Longa">
+                            <span>Manga Longa</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="manga" value="Manga Ciganinha">
+                            <span>Manga Ciganinha</span>
                         </label>
                     </li>
                 </ul>
@@ -82,22 +117,29 @@
                 <div class="croqui-container">
                     <svg viewBox="0 0 200 320" class="croqui-svg">
                         <!-- Cabeça e Pescoço -->
-                        <circle cx="100" cy="32" r="18" fill="#F8D9DF" stroke="#D39EA7" stroke-width="1.5"/>
-                        <path d="M93 50 L107 50 L107 60 L93 60 Z" fill="#F8D9DF"/>
+                        <circle cx="100" cy="30" r="16" fill="#F8D9DF" stroke="#D39EA7" stroke-width="1.5"/>
+                        <path d="M94 46 L106 46 L106 56 L94 56 Z" fill="#F8D9DF"/>
                         
                         <!-- Corpo / Tronco (Silhueta ajustável) -->
-                        <path id="croqui-tronco" d="M80 60 Q100 58 120 60 L115 110 L85 110 Z" fill="#F4D7DE" stroke="#B76E79" stroke-width="1.5"/>
+                        <path id="croqui-tronco" d="M80 56 Q100 54 120 56 L112 85 Q100 88 88 85 L85 110 L115 110 Z" fill="#F4D7DE" stroke="#B76E79" stroke-width="1.5"/>
                         
+                        <!-- Gola / Decote sobre o Corpo -->
+                        <path id="croqui-gola" d="M80 56 L100 80 L120 56 Z" fill="#ffffff" opacity="0.9"/>
+
+                        <!-- Mangas SVG -->
+                        <path id="croqui-mangas-esq" d="" fill="#B76E79" opacity="0.8"/>
+                        <path id="croqui-mangas-dir" d="" fill="#B76E79" opacity="0.8"/>
+
                         <!-- Braços -->
-                        <path d="M80 60 Q65 90 55 130" stroke="#F8D9DF" stroke-width="6" fill="none" stroke-linecap="round"/>
-                        <path d="M120 60 Q135 90 145 130" stroke="#F8D9DF" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <path d="M78 58 Q62 90 52 130" stroke="#F8D9DF" stroke-width="5" fill="none" stroke-linecap="round"/>
+                        <path d="M122 58 Q138 90 148 130" stroke="#F8D9DF" stroke-width="5" fill="none" stroke-linecap="round"/>
                         
                         <!-- Pernas -->
-                        <path d="M90 200 L85 300" stroke="#F8D9DF" stroke-width="7" stroke-linecap="round"/>
-                        <path d="M110 200 L115 300" stroke="#F8D9DF" stroke-width="7" stroke-linecap="round"/>
+                        <path d="M90 200 L85 300" stroke="#F8D9DF" stroke-width="6" stroke-linecap="round"/>
+                        <path d="M110 200 L115 300" stroke="#F8D9DF" stroke-width="6" stroke-linecap="round"/>
 
-                        <!-- Saia Visual Dinâmica (Formato e Cor alteráveis) -->
-                        <path id="croqui-saia" d="M85 110 Q100 112 115 110 L135 220 Q100 230 65 220 Z" fill="#B76E79" stroke="#9F5B67" stroke-width="2" transition="all 0.3s"/>
+                        <!-- Saia Visual Dinâmica (Formato, Comprimento e Cor alteráveis) -->
+                        <path id="croqui-saia" d="M85 110 Q100 112 115 110 L135 220 Q100 230 65 220 Z" fill="#B76E79" stroke="#9F5B67" stroke-width="2"/>
                         
                         <!-- Linhas Decorativas Dinâmicas sobre a Saia -->
                         <path id="croqui-linhas-desenho" d="M85 110 L65 220 M115 110 L135 220" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
@@ -106,18 +148,21 @@
 
                 <!-- Resumo das Escolhas Ativas -->
                 <div class="resumo-croqui">
+                    <span class="badge-tag" id="tag-gola">Gola: Decote V</span>
+                    <span class="badge-tag" id="tag-manga">Manga: Sem Manga</span>
                     <span class="badge-tag" id="tag-saia">Saia: Evasê</span>
+                    <span class="badge-tag" id="tag-comprimento">Tamanho: Midi</span>
                     <span class="badge-tag" id="tag-cor">Cor: Rosa</span>
                     <span class="badge-tag" id="tag-tecido">Tecido: Seda</span>
                     <span class="badge-tag" id="tag-silhueta">Silhueta: Ampulheta</span>
                 </div>
             </section>
 
-            <!-- CARD 3: SAIAS -->
+            <!-- CARD 3: SAIAS & COMPRIMENTO -->
             <section class="card">
-                <h2>👗 Saias</h2>
-                <p class="subtitulo-card">Escolha 1 modelagem de saia</p>
-
+                <h2>👗 Saia & Comprimento</h2>
+                
+                <p class="subgrupo-titulo">Modelagem da Saia</p>
                 <ul>
                     <li>
                         <label class="opcao-label">
@@ -150,102 +195,196 @@
                         </label>
                     </li>
                 </ul>
-            </section>
 
-            <!-- CARD 4: TECIDOS -->
-            <section class="card">
-                <h2>🧵 Tecidos</h2>
-                <p class="subtitulo-card">Escolha 1 material</p>
-
+                <p class="subgrupo-titulo">Comprimento da Peça</p>
                 <ul>
                     <li>
                         <label class="opcao-label">
-                            <input type="radio" name="tecido" value="Algodão">
-                            <span>Algodão</span>
+                            <input type="radio" name="comprimento" value="Curto">
+                            <span>Curto (Acima do joelho)</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
-                            <input type="radio" name="tecido" value="Linho">
-                            <span>Linho</span>
+                            <input type="radio" name="comprimento" value="Midi" checked>
+                            <span>Midi (Abaixo do joelho)</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
-                            <input type="radio" name="tecido" value="Seda" checked>
-                            <span>Seda</span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="opcao-label">
-                            <input type="radio" name="tecido" value="Jeans">
-                            <span>Jeans</span>
-                        </label>
-                    </li>
-                    <li>
-                        <label class="opcao-label">
-                            <input type="radio" name="tecido" value="Malha">
-                            <span>Malha</span>
+                            <input type="radio" name="comprimento" value="Longo">
+                            <span>Longo (Até o tornozelo)</span>
                         </label>
                     </li>
                 </ul>
             </section>
 
-            <!-- CARD 5: SILHUETAS -->
+            <!-- CARD 4: LINHAS E ACABAMENTOS -->
             <section class="card">
-                <h2>👤 Silhuetas</h2>
-                <p class="subtitulo-card">Escolha 1 formato corporal</p>
+                <h2>📏 Linhas & Costura</h2>
+                <p class="subtitulo-card">Escolha o acabamento de linha</p>
+
+                <ul>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Reta" checked>
+                            <span>Linha Reta Clássica</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Curva">
+                            <span>Linha Curva Fluida</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Espiral">
+                            <span>Espiral Decorativa</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Tracejada">
+                            <span>Tracejado / Ponto Pesponto</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label">
+                            <input type="radio" name="linha" value="Zigue-zague">
+                            <span>Zigue-zague de Acabamento</span>
+                        </label>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- CARD 5: TECIDOS & TEXTURAS VISUAIS -->
+            <section class="card">
+                <h2>🧵 Tecidos & Toque</h2>
+                <p class="subtitulo-card">Selecione o caimento do tecido</p>
+
+                <ul>
+                    <li>
+                        <label class="opcao-label opcao-tecido">
+                            <div>
+                                <input type="radio" name="tecido" value="Seda" checked>
+                                <span>Seda Fina (Acetinado)</span>
+                            </div>
+                            <div class="preview-textura textura-seda" title="Seda Brilhante"></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label opcao-tecido">
+                            <div>
+                                <input type="radio" name="tecido" value="Algodão">
+                                <span>Algodão Natural</span>
+                            </div>
+                            <div class="preview-textura textura-algodao" title="Algodão Pobre"></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label opcao-tecido">
+                            <div>
+                                <input type="radio" name="tecido" value="Linho">
+                                <span>Linho Rústico Chic</span>
+                            </div>
+                            <div class="preview-textura textura-linho" title="Linho"></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label opcao-tecido">
+                            <div>
+                                <input type="radio" name="tecido" value="Jeans">
+                                <span>Jeans / Denim</span>
+                            </div>
+                            <div class="preview-textura textura-jeans" title="Jeans"></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label opcao-tecido">
+                            <div>
+                                <input type="radio" name="tecido" value="Malha">
+                                <span>Malha Confort</span>
+                            </div>
+                            <div class="preview-textura textura-malha" title="Malha"></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label opcao-tecido">
+                            <div>
+                                <input type="radio" name="tecido" value="Veludo">
+                                <span>Veludo Nobre</span>
+                            </div>
+                            <div class="preview-textura textura-veludo" title="Veludo"></div>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="opcao-label opcao-tecido">
+                            <div>
+                                <input type="radio" name="tecido" value="Tule">
+                                <span>Tule Transparente</span>
+                            </div>
+                            <div class="preview-textura textura-tule" title="Tule"></div>
+                        </label>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- CARD 6: SILHUETAS -->
+            <section class="card">
+                <h2>👤 Silhueta Corporal</h2>
+                <p class="subtitulo-card">Formato do manequim</p>
 
                 <ul>
                     <li>
                         <label class="opcao-label">
                             <input type="radio" name="silhueta" value="Ampulheta" checked>
-                            <span>Ampulheta</span>
+                            <span>Ampulheta (Cintura marcada)</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
                             <input type="radio" name="silhueta" value="Oval">
-                            <span>Oval</span>
+                            <span>Oval (Suave e volumosa)</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
                             <input type="radio" name="silhueta" value="Retângulo">
-                            <span>Retângulo</span>
+                            <span>Retângulo (Linhas retas)</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
                             <input type="radio" name="silhueta" value="Triângulo">
-                            <span>Triângulo</span>
+                            <span>Triângulo (Quadril destacado)</span>
                         </label>
                     </li>
                     <li>
                         <label class="opcao-label">
                             <input type="radio" name="silhueta" value="Triângulo Invertido">
-                            <span>Triângulo Invertido</span>
+                            <span>Triângulo Invertido (Ombros largos)</span>
                         </label>
                     </li>
                 </ul>
             </section>
 
-            <!-- CARD 6: PALETA E CÍRCULO DE CORES -->
+            <!-- CARD 7: PALETA & SELETOR DE COR PERSONALIZADA -->
             <section class="card">
-                <h2>🎨 Cores</h2>
-                <p class="subtitulo-card">Clique para escolher a cor desejada</p>
+                <h2>🎨 Cores & Tonalidades</h2>
+                <p class="subtitulo-card">Amostras e Seletor Personalizado</p>
 
                 <div class="seletor-cores">
-                    <!-- Roda de cores cônica interativa -->
-                    <div class="wheel-container" title="Clique no círculo de cores">
-                        <div class="cores" id="roda-cores">
-                            <div class="centro">🎨</div>
-                        </div>
+                    
+                    <!-- Seletor Livre de Cor (Color Picker) -->
+                    <div class="color-picker-wrapper">
+                        <label for="picker-cor-livre">Escolher Cor Personalizada:</label>
+                        <input type="color" id="picker-cor-livre" class="input-color-custom" value="#b76e79" title="Clique para escolher qualquer cor">
                     </div>
 
-                    <!-- Amostras de Cores Clicáveis -->
+                    <!-- Amostras de Cores Rápidas -->
                     <div class="cores-grid">
-                        <div class="cor-swatch active" data-color="#b76e79" data-name="Rosa" style="background-color: #b76e79;">Rosa</div>
+                        <div class="cor-swatch active" data-color="#b76e79" data-name="Rosa Ateliê" style="background-color: #b76e79;">Rosa</div>
                         <div class="cor-swatch" data-color="#e63946" data-name="Vermelho" style="background-color: #e63946;">Vermelho</div>
                         <div class="cor-swatch" data-color="#f4a261" data-name="Laranja" style="background-color: #f4a261;">Laranja</div>
                         <div class="cor-swatch" data-color="#e9c46a" data-name="Amarelo" style="background-color: #e9c46a; color: #333;">Amarelo</div>
@@ -253,12 +392,16 @@
                         <div class="cor-swatch" data-color="#457b9d" data-name="Azul" style="background-color: #457b9d;">Azul</div>
                         <div class="cor-swatch" data-color="#7209b7" data-name="Roxo" style="background-color: #7209b7;">Roxo</div>
                         <div class="cor-swatch" data-color="#2b2d42" data-name="Preto" style="background-color: #2b2d42;">Preto</div>
+                        <div class="cor-swatch" data-color="#6b1d2f" data-name="Vinho" style="background-color: #6b1d2f;">Vinho</div>
+                        <div class="cor-swatch" data-color="#0f5257" data-name="Esmeralda" style="background-color: #0f5257;">Esmeralda</div>
+                        <div class="cor-swatch" data-color="#c9a227" data-name="Dourado" style="background-color: #c9a227; color: #333;">Dourado</div>
+                        <div class="cor-swatch" data-color="#f8f3f1" data-name="Branco Pérola" style="background-color: #f8f3f1; color: #444; border: 1px solid #ccc;">Branco</div>
                     </div>
                 </div>
 
                 <!-- Input radio escondido para guardar o estado da cor -->
                 <div style="display:none;">
-                    <input type="radio" name="cor" value="Rosa" data-hex="#b76e79" checked>
+                    <input type="radio" name="cor" value="Rosa Ateliê" data-hex="#b76e79" checked>
                     <input type="radio" name="cor" value="Vermelho" data-hex="#e63946">
                     <input type="radio" name="cor" value="Laranja" data-hex="#f4a261">
                     <input type="radio" name="cor" value="Amarelo" data-hex="#e9c46a">
@@ -266,73 +409,60 @@
                     <input type="radio" name="cor" value="Azul" data-hex="#457b9d">
                     <input type="radio" name="cor" value="Roxo" data-hex="#7209b7">
                     <input type="radio" name="cor" value="Preto" data-hex="#2b2d42">
+                    <input type="radio" name="cor" value="Vinho" data-hex="#6b1d2f">
+                    <input type="radio" name="cor" value="Esmeralda" data-hex="#0f5257">
+                    <input type="radio" name="cor" value="Dourado" data-hex="#c9a227">
+                    <input type="radio" name="cor" value="Branco Pérola" data-hex="#f8f3f1">
+                    <input type="radio" name="cor" value="Personalizada" id="radio-cor-custom" data-hex="#b76e79">
                 </div>
             </section>
 
         </div>
 
-        <!-- SEÇÃO DE IA (OPENAI DALL-E INTEGRATION) -->
+        <!-- SEÇÃO DE IA LIMPA E AMIGÁVEL AO CLIENTE -->
         <section class="secao-ia">
             <div class="secao-ia-header">
-                <h2>✨ Estúdio de Criação por IA (OpenAI DALL-E)</h2>
-                <p>O seu prompt é montado automaticamente a partir das escolhas acima. Clique para gerar a imagem realista da peça!</p>
+                <h2>✨ Criar Ilustração Realista com Inteligência Artificial</h2>
+                <p>O prompt é montado em tempo real com base na sua composição do croqui. Clique abaixo para gerar o modelo realista!</p>
             </div>
 
             <div class="grid-ia">
-                <!-- PAINEL ESQUERDO: CONFIGURAÇÃO DE PROMPT E CHAVE -->
+                <!-- PAINEL ESQUERDO: CONFIGURAÇÃO DE PROMPT AUTOMÁTICO -->
                 <div class="painel-config-ia">
                     
                     <div class="grupo-input">
-                        <label for="openai-key">🔑 Sua Chave de API OpenAI:</label>
-                        <div class="input-key-wrapper">
-                            <input type="password" id="openai-key" value="" placeholder="sk-...">
-                            <button type="button" class="btn-toggle-key" id="btn-toggle-key" title="Mostrar/Ocultar Chave">👁️</button>
-                        </div>
-                    </div>
-
-                    <div class="grupo-input">
-                        <label for="openai-modelo">⚙️ Modelo de IA:</label>
-                        <select id="openai-modelo" class="select-modelo">
-                            <option value="gpt-image-1.5" selected>gpt-image-1.5 (Recomendado - Ativo na sua Chave)</option>
-                            <option value="gpt-image-2">gpt-image-2 (Alta Qualidade)</option>
-                            <option value="dall-e-3">dall-e-3 (Legado)</option>
-                            <option value="dall-e-2">dall-e-2 (Legado)</option>
-                        </select>
-                    </div>
-
-                    <div class="grupo-input">
-                        <label for="prompt-gerado">📝 Prompt Automático (Você pode editar se desejar):</label>
-                        <textarea id="prompt-gerado" class="prompt-textarea" rows="4"></textarea>
+                        <label for="prompt-gerado">📝 Descrição da Peça (Gerada Automaticamente - Editável):</label>
+                        <textarea id="prompt-gerado" class="prompt-textarea" rows="5"></textarea>
                     </div>
 
                     <button type="button" id="btn-gerar-ia" class="btn-gerar-ia">
-                        <span>✨ Gerar Ilustração com IA (DALL-E)</span>
+                        <span>✨ Gerar Ilustração de Moda com IA</span>
                     </button>
                     
                     <div id="status-mensagem" style="font-size: 13px; text-align: center; color: #b56c6c;"></div>
                 </div>
 
-                <!-- PAINEL DIREITO: RESULTADO DA IA -->
+                <!-- PAINEL DIREITO: RESULTADO DA ILUSTRAÇÃO GERADA -->
                 <div class="painel-resultado-ia">
                     
-                    <!-- Estado Inicial (Placeholder) -->
+                    <!-- Estado Inicial -->
                     <div class="placeholder-resultado" id="placeholder-ia">
                         <span>👗</span>
-                        <p>Sua ilustração de moda gerada por inteligência artificial aparecerá aqui.</p>
+                        <p>Sua ilustração de moda de alta resolução gerada por inteligência artificial aparecerá aqui.</p>
                     </div>
 
                     <!-- Estado de Carregamento -->
                     <div class="loader-container" id="loader-ia">
                         <div class="spinner"></div>
-                        <p style="color: var(--rosa-escuro); font-weight: 600;">Criando ilustração com DALL-E...</p>
-                        <span style="font-size: 12px; color: var(--cinza);">Isso pode levar de 5 a 15 segundos.</span>
+                        <p style="color: var(--rosa-escuro); font-weight: 600;">Criando ilustração exclusiva de alta moda...</p>
+                        <span style="font-size: 12px; color: var(--cinza);">Isso leva de 5 a 12 segundos.</span>
                     </div>
 
                     <!-- Estado de Sucesso (Imagem Renderizada) -->
                     <div class="imagem-gerada-container" id="container-imagem-ia">
                         <img id="img-resultado-ia" class="img-ia-resultado" src="" alt="Ilustração Gerada por IA">
-                        <a id="btn-download-img" class="btn-download" href="#" target="_blank" download="molde-moda-ia.png">
-                            📥 Baixar Imagem em Alta Resolução
+                        <a id="btn-download-img" class="btn-download" href="#" target="_blank" download="ilustracao-moda-atelie.png">
+                            📥 Baixar Ilustração em Alta Resolução
                         </a>
                     </div>
 
@@ -342,49 +472,102 @@
 
     </div>
 
-    <!-- LÓGICA JAVASCRIPT -->
+    <!-- LÓGICA JAVASCRIPT INTEGRADA -->
     <script>
-        // FORMALIZAÇÃO DAS ESCOLHAS E CROQUI DINÂMICO
         document.addEventListener('DOMContentLoaded', () => {
+            // Renderizar Navegação Global
+            renderizarNavGlobal('../');
 
             const inputsRadio = document.querySelectorAll('input[type="radio"]');
             const swatches = document.querySelectorAll('.cor-swatch');
+            const colorPicker = document.getElementById('picker-cor-livre');
+            const radioCorCustom = document.getElementById('radio-cor-custom');
             const promptTextarea = document.getElementById('prompt-gerado');
             const btnGerarIA = document.getElementById('btn-gerar-ia');
-            const keyInput = document.getElementById('openai-key');
-            const btnToggleKey = document.getElementById('btn-toggle-key');
             const statusMensagem = document.getElementById('status-mensagem');
 
             // Elementos SVG do Croqui
             const croquiSaia = document.getElementById('croqui-saia');
             const croquiTronco = document.getElementById('croqui-tronco');
+            const croquiGola = document.getElementById('croqui-gola');
+            const croquiMangasEsq = document.getElementById('croqui-mangas-esq');
+            const croquiMangasDir = document.getElementById('croqui-mangas-dir');
             const croquiLinhas = document.getElementById('croqui-linhas-desenho');
 
             // Badges de resumo
+            const tagGola = document.getElementById('tag-gola');
+            const tagManga = document.getElementById('tag-manga');
             const tagSaia = document.getElementById('tag-saia');
+            const tagComprimento = document.getElementById('tag-comprimento');
             const tagCor = document.getElementById('tag-cor');
             const tagTecido = document.getElementById('tag-tecido');
             const tagSilhueta = document.getElementById('tag-silhueta');
 
-            // Mapeamento de formatos de saia em caminhos SVG d=""
+            // Mapeamento de Formatos de Saia & Comprimento
             const formatosSaia = {
-                'Evasê': 'M85 110 Q100 112 115 110 L135 220 Q100 230 65 220 Z',
-                'Godê': 'M85 110 Q100 112 115 110 L155 225 Q100 245 45 225 Z',
-                'Lápis': 'M85 110 Q100 112 115 110 L110 220 Q100 222 90 220 Z',
-                'Plissada': 'M85 110 Q100 112 115 110 L140 220 Q100 230 60 220 Z',
-                'Envelope': 'M85 110 Q100 112 115 110 L135 220 L75 220 Z'
+                'Curto': {
+                    'Evasê': 'M85 110 Q100 112 115 110 L130 170 Q100 175 70 170 Z',
+                    'Godê': 'M85 110 Q100 112 115 110 L145 175 Q100 185 55 175 Z',
+                    'Lápis': 'M85 110 Q100 112 115 110 L110 170 Q100 172 90 170 Z',
+                    'Plissada': 'M85 110 Q100 112 115 110 L135 170 Q100 175 65 170 Z',
+                    'Envelope': 'M85 110 Q100 112 115 110 L130 170 L75 170 Z'
+                },
+                'Midi': {
+                    'Evasê': 'M85 110 Q100 112 115 110 L138 225 Q100 235 62 225 Z',
+                    'Godê': 'M85 110 Q100 112 115 110 L155 230 Q100 250 45 230 Z',
+                    'Lápis': 'M85 110 Q100 112 115 110 L110 225 Q100 227 90 225 Z',
+                    'Plissada': 'M85 110 Q100 112 115 110 L142 225 Q100 235 58 225 Z',
+                    'Envelope': 'M85 110 Q100 112 115 110 L138 225 L72 225 Z'
+                },
+                'Longo': {
+                    'Evasê': 'M85 110 Q100 112 115 110 L145 285 Q100 295 55 285 Z',
+                    'Godê': 'M85 110 Q100 112 115 110 L165 285 Q100 305 35 285 Z',
+                    'Lápis': 'M85 110 Q100 112 115 110 L112 285 Q100 288 88 285 Z',
+                    'Plissada': 'M85 110 Q100 112 115 110 L150 285 Q100 295 50 285 Z',
+                    'Envelope': 'M85 110 Q100 112 115 110 L145 285 L65 285 Z'
+                }
             };
 
-            // Mapeamento de Silhuetas (Ajuste de tronco SVG)
+            // Mapeamento de Gola / Decote SVG
+            const formatosGola = {
+                'Tomara que Caia': 'M80 70 Q100 75 120 70 L120 56 L80 56 Z',
+                'Decote V': 'M80 56 L100 82 L120 56 Z',
+                'Gola Alta': 'M92 46 L108 46 L108 58 L92 58 Z',
+                'Decote Coração': 'M80 62 C90 75 95 75 100 68 C105 75 110 75 120 62 L120 56 L80 56 Z',
+                'Decote Canoa': 'M80 56 Q100 68 120 56 Z'
+            };
+
+            // Mapeamento de Mangas SVG
+            const formatosManga = {
+                'Sem Manga': { esq: '', dir: '' },
+                'Manga Curta': { 
+                    esq: 'M80 56 L68 85 L78 90 L85 65 Z', 
+                    dir: 'M120 56 L132 85 L122 90 L115 65 Z' 
+                },
+                'Manga Bufante': { 
+                    esq: 'M80 56 Q60 70 68 95 L80 85 Z', 
+                    dir: 'M120 56 Q140 70 132 95 L120 85 Z' 
+                },
+                'Manga Longa': { 
+                    esq: 'M80 56 L55 130 L65 132 L85 70 Z', 
+                    dir: 'M120 56 L145 130 L135 132 L115 70 Z' 
+                },
+                'Manga Ciganinha': { 
+                    esq: 'M75 70 Q60 80 65 95 L78 85 Z', 
+                    dir: 'M125 70 Q140 80 135 95 L122 85 Z' 
+                }
+            };
+
+            // Mapeamento de Silhuetas
             const formatosSilhueta = {
-                'Ampulheta': 'M80 60 Q100 58 120 60 L112 85 Q100 88 88 85 L85 110 L115 110 Z',
-                'Oval': 'M75 60 Q100 50 125 60 L120 90 Q100 115 80 90 Z',
-                'Retângulo': 'M80 60 L120 60 L118 110 L82 110 Z',
-                'Triângulo': 'M85 60 L115 60 L125 110 L75 110 Z',
-                'Triângulo Invertido': 'M75 60 L125 60 L110 110 L90 110 Z'
+                'Ampulheta': 'M80 56 Q100 54 120 56 L112 85 Q100 88 88 85 L85 110 L115 110 Z',
+                'Oval': 'M75 56 Q100 48 125 56 L120 90 Q100 115 80 90 Z',
+                'Retângulo': 'M80 56 L120 56 L118 110 L82 110 Z',
+                'Triângulo': 'M85 56 L115 56 L125 110 L75 110 Z',
+                'Triângulo Invertido': 'M75 56 L125 56 L110 110 L90 110 Z'
             };
 
-            // Mapeamento de Linhas (Desenho SVG)
+            // Mapeamento de Linhas
             const estilosLinha = {
                 'Reta': 'M85 110 L65 220 M115 110 L135 220 M100 110 L100 225',
                 'Curva': 'M85 110 Q70 165 65 220 M115 110 Q130 165 135 220',
@@ -393,36 +576,52 @@
                 'Zigue-zague': 'M85 110 L95 130 L85 150 L95 170 L85 190 L95 210'
             };
 
-            // Função para ler escolhas atuais
+            // Ler escolhas atuais
             function obterEscolhas() {
-                const linha = document.querySelector('input[name="linha"]:checked')?.value || 'Reta';
+                const gola = document.querySelector('input[name="gola"]:checked')?.value || 'Decote V';
+                const manga = document.querySelector('input[name="manga"]:checked')?.value || 'Sem Manga';
                 const saia = document.querySelector('input[name="saia"]:checked')?.value || 'Evasê';
+                const comprimento = document.querySelector('input[name="comprimento"]:checked')?.value || 'Midi';
+                const linha = document.querySelector('input[name="linha"]:checked')?.value || 'Reta';
                 const tecido = document.querySelector('input[name="tecido"]:checked')?.value || 'Seda';
                 const silhueta = document.querySelector('input[name="silhueta"]:checked')?.value || 'Ampulheta';
                 
                 const corRadio = document.querySelector('input[name="cor"]:checked');
-                const corNome = corRadio ? corRadio.value : 'Rosa';
+                const corNome = corRadio ? corRadio.value : 'Rosa Ateliê';
                 const corHex = corRadio ? corRadio.getAttribute('data-hex') : '#b76e79';
 
-                return { linha, saia, tecido, silhueta, corNome, corHex };
+                return { gola, manga, saia, comprimento, linha, tecido, silhueta, corNome, corHex };
             }
 
-            // Atualiza o Croqui Visual SVG e os Badges
+            // Atualiza Croqui SVG e Badges
             function atualizarCroqui() {
                 const e = obterEscolhas();
 
-                // Atualizar Saia SVG
-                if (formatosSaia[e.saia]) {
-                    croquiSaia.setAttribute('d', formatosSaia[e.saia]);
+                // Saia & Comprimento
+                if (formatosSaia[e.comprimento] && formatosSaia[e.comprimento][e.saia]) {
+                    croquiSaia.setAttribute('d', formatosSaia[e.comprimento][e.saia]);
                 }
                 croquiSaia.setAttribute('fill', e.corHex);
 
-                // Atualizar Tronco/Silhueta SVG
+                // Silhueta Tronco
                 if (formatosSilhueta[e.silhueta]) {
                     croquiTronco.setAttribute('d', formatosSilhueta[e.silhueta]);
                 }
 
-                // Atualizar Estilo de Linha sobre a saia
+                // Gola / Decote
+                if (formatosGola[e.gola]) {
+                    croquiGola.setAttribute('d', formatosGola[e.gola]);
+                }
+
+                // Mangas
+                if (formatosManga[e.manga]) {
+                    croquiMangasEsq.setAttribute('d', formatosManga[e.manga].esq);
+                    croquiMangasDir.setAttribute('d', formatosManga[e.manga].dir);
+                    croquiMangasEsq.setAttribute('fill', e.corHex);
+                    croquiMangasDir.setAttribute('fill', e.corHex);
+                }
+
+                // Linhas sobre o vestido
                 if (estilosLinha[e.linha]) {
                     croquiLinhas.setAttribute('d', estilosLinha[e.linha]);
                     if (e.linha === 'Tracejada') {
@@ -433,7 +632,10 @@
                 }
 
                 // Atualizar Badges
+                tagGola.textContent = `Gola: ${e.gola}`;
+                tagManga.textContent = `Manga: ${e.manga}`;
                 tagSaia.textContent = `Saia: ${e.saia}`;
+                tagComprimento.textContent = `Tamanho: ${e.comprimento}`;
                 tagCor.textContent = `Cor: ${e.corNome}`;
                 tagTecido.textContent = `Tecido: ${e.tecido}`;
                 tagSilhueta.textContent = `Silhueta: ${e.silhueta}`;
@@ -442,24 +644,27 @@
                 atualizarPrompt(e);
             }
 
-            // Atualiza a Textarea de Prompt para a OpenAI DALL-E
+            // Monta o prompt descritivo para a OpenAI
             function atualizarPrompt(e) {
-                const prompt = `Ilustração de moda profissional e realista de um vestido elegante, apresentando saia estilo ${e.saia}, confeccionada em tecido de ${e.tecido}, com silhueta corporal em formato ${e.silhueta}, na cor vibrante ${e.corNome}, com detalhes de alta costura em acabamento de linha ${e.linha}. Estilo desenho de ateliê de alta moda, iluminação de estúdio profissional, modelo manequim realista, 8k resolução.`;
+                const prompt = `Ilustração de moda profissional e ultra realista de um vestido exclusivo de ateliê, apresentando ${e.gola}, acabamento de ${e.manga}, saia estilo ${e.saia} de comprimento ${e.comprimento}, confeccionado em tecido refinado de ${e.tecido}, com silhueta corporal em formato ${e.silhueta}, na tonalidade vibrante ${e.corNome} (${e.corHex}), com detalhes artesanais de costura em linhas estilo ${e.linha}. Estilo desenho de moda de alta costura, textura tátil realista de tecido, iluminação de estúdio profissional 8k.`;
                 promptTextarea.value = prompt;
             }
 
-            // Escutar trocas nos Rádios
+            // Escutar rádios
             inputsRadio.forEach(radio => {
                 radio.addEventListener('change', atualizarCroqui);
             });
 
-            // Escutar cliques nas amostras de cores
+            // Escutar amostras de cores
             swatches.forEach(swatch => {
                 swatch.addEventListener('click', () => {
                     swatches.forEach(s => s.classList.remove('active'));
                     swatch.classList.add('active');
 
                     const colorName = swatch.getAttribute('data-name');
+                    const hex = swatch.getAttribute('data-color');
+                    colorPicker.value = hex;
+
                     const radioCor = document.querySelector(`input[name="cor"][value="${colorName}"]`);
                     if (radioCor) {
                         radioCor.checked = true;
@@ -468,25 +673,26 @@
                 });
             });
 
-            // Mostrar/Ocultar Chave API
-            btnToggleKey.addEventListener('click', () => {
-                if (keyInput.type === 'password') {
-                    keyInput.type = 'text';
-                    btnToggleKey.textContent = '🔒';
-                } else {
-                    keyInput.type = 'password';
-                    btnToggleKey.textContent = '👁️';
-                }
+            // Escutar Seletor Livre de Cor (Color Picker)
+            colorPicker.addEventListener('input', (event) => {
+                const hexColor = event.target.value;
+                swatches.forEach(s => s.classList.remove('active'));
+                
+                radioCorCustom.value = `Cor Customizada (${hexColor})`;
+                radioCorCustom.setAttribute('data-hex', hexColor);
+                radioCorCustom.checked = true;
+                
+                atualizarCroqui();
             });
 
-            // GERAÇÃO DE IMAGEM VIA API OPENAI (DALL-E)
+            // GERAÇÃO DE IMAGEM VIA API OPENAI
             async function gerarImagemIA() {
-                const apiKey = keyInput.value.trim();
+                const apiKey = (typeof CONFIG !== 'undefined' && CONFIG.OPENAI_API_KEY) ? CONFIG.OPENAI_API_KEY : '';
+                const modelo = (typeof CONFIG !== 'undefined' && CONFIG.DEFAULT_MODEL) ? CONFIG.DEFAULT_MODEL : 'gpt-image-1.5';
                 const prompt = promptTextarea.value.trim();
-                let modelo = document.getElementById('openai-modelo').value;
 
-                if (!apiKey) {
-                    alert('Por favor, informe uma chave de API válida da OpenAI.');
+                if (!apiKey || apiKey.includes('SuaChave')) {
+                    alert('Chave da API da OpenAI não encontrada em js/config.js. Por favor, verifique o arquivo.');
                     return;
                 }
 
@@ -495,19 +701,17 @@
                     return;
                 }
 
-                // Elementos da Interface de IA
                 const placeholder = document.getElementById('placeholder-ia');
                 const loader = document.getElementById('loader-ia');
                 const containerImg = document.getElementById('container-imagem-ia');
                 const imgResultado = document.getElementById('img-resultado-ia');
                 const btnDownload = document.getElementById('btn-download-img');
 
-                // Atualizar Estado visual para Carregamento
                 placeholder.style.display = 'none';
                 containerImg.style.display = 'none';
                 loader.style.display = 'flex';
                 btnGerarIA.disabled = true;
-                statusMensagem.textContent = `Enviando solicitação para a API da OpenAI (${modelo})...`;
+                statusMensagem.textContent = `Gerando ilustração de moda em alta resolução...`;
 
                 async function fazerRequisicao(modelToUse) {
                     const response = await fetch('https://api.openai.com/v1/images/generations', {
@@ -530,11 +734,8 @@
                 try {
                     let { response, data } = await fazerRequisicao(modelo);
 
-                    // Fallback automático para gpt-image-1.5 se o modelo informado não estiver ativo na chave
                     if (!response.ok && data.error?.message?.includes('does not exist')) {
-                        statusMensagem.textContent = 'Modelo anterior indisponível. Alternando para gpt-image-1.5...';
-                        modelo = 'gpt-image-1.5';
-                        document.getElementById('openai-modelo').value = 'gpt-image-1.5';
+                        statusMensagem.textContent = 'Alternando modelo de imagem...';
                         const fallbackResult = await fazerRequisicao('gpt-image-1.5');
                         response = fallbackResult.response;
                         data = fallbackResult.data;
@@ -551,13 +752,12 @@
                         throw new Error('A API não retornou uma imagem válida.');
                     }
 
-                    // Renderizar Imagem Recebida (URL ou Base64)
                     imgResultado.src = imageUrl;
                     btnDownload.href = imageUrl;
 
                     loader.style.display = 'none';
                     containerImg.style.display = 'flex';
-                    statusMensagem.textContent = `✨ Ilustração criada com sucesso (${modelo})!`;
+                    statusMensagem.textContent = `✨ Ilustração criada com sucesso!`;
 
                 } catch (error) {
                     console.error('Erro na requisição OpenAI:', error);
@@ -572,7 +772,7 @@
 
             btnGerarIA.addEventListener('click', gerarImagemIA);
 
-            // Inicializar visualização
+            // Inicializar visualização do croqui
             atualizarCroqui();
         });
     </script>
