@@ -5,6 +5,10 @@ const PRODUTOS = [
         nome: "Vestido Evasê Floral",
         categoria: "Vestidos",
         imagem: "https://i.pinimg.com/736x/bc/61/ff/bc61ff7ecf46c82d25eab5fcf1369aa2.jpg",
+        imagens: [
+            "https://i.pinimg.com/736x/bc/61/ff/bc61ff7ecf46c82d25eab5fcf1369aa2.jpg",
+            "assets/molde_01.png"
+        ],
         tecido: "Algodão",
         dificuldade: "Média",
         acabamento: "Zíper Invisível",
@@ -22,6 +26,10 @@ const PRODUTOS = [
         nome: "Vestido de Festa Longo",
         categoria: "Vestidos",
         imagem: "https://i.pinimg.com/1200x/18/fa/55/18fa55ae01b7ea8a26e3580142100361.jpg",
+        imagens: [
+            "https://i.pinimg.com/1200x/18/fa/55/18fa55ae01b7ea8a26e3580142100361.jpg",
+            "assets/molde_02.png"
+        ],
         tecido: "Cetim / Seda",
         dificuldade: "Alta",
         acabamento: "Com Forro",
@@ -39,6 +47,10 @@ const PRODUTOS = [
         nome: "Vestido Casual Midi",
         categoria: "Vestidos",
         imagem: "https://i.pinimg.com/736x/2f/76/ab/2f76ab356407430b0e4c78ad18c03345.jpg",
+        imagens: [
+            "https://i.pinimg.com/736x/2f/76/ab/2f76ab356407430b0e4c78ad18c03345.jpg",
+            "assets/molde_03.png"
+        ],
         tecido: "Viscose",
         dificuldade: "Fácil",
         acabamento: "Lastex nas Costas",
@@ -56,6 +68,10 @@ const PRODUTOS = [
         nome: "Blusa Gola Alta",
         categoria: "Outras Peças",
         imagem: "https://i.pinimg.com/1200x/e3/f7/b1/e3f7b178ac74846002982e3bfb8bd6e0.jpg",
+        imagens: [
+            "https://i.pinimg.com/1200x/e3/f7/b1/e3f7b178ac74846002982e3bfb8bd6e0.jpg",
+            "assets/molde_04.png"
+        ],
         tecido: "Malha",
         dificuldade: "Fácil",
         acabamento: "Manga Longa",
@@ -73,6 +89,10 @@ const PRODUTOS = [
         nome: "Calça Alfaiataria",
         categoria: "Outras Peças",
         imagem: "https://i.pinimg.com/736x/4a/91/cb/4a91cbb24acd4619fb7edf6c7b3ec20a.jpg",
+        imagens: [
+            "https://i.pinimg.com/736x/4a/91/cb/4a91cbb24acd4619fb7edf6c7b3ec20a.jpg",
+            "assets/molde_05.png"
+        ],
         tecido: "Linho",
         dificuldade: "Alta",
         acabamento: "Com Bolsos",
@@ -90,6 +110,10 @@ const PRODUTOS = [
         nome: "Saia Longa Jeans",
         categoria: "Outras Peças",
         imagem: "https://i.pinimg.com/736x/3e/9d/a3/3e9da360e240bd4b73a890004c1271f8.jpg",
+        imagens: [
+            "https://i.pinimg.com/736x/3e/9d/a3/3e9da360e240bd4b73a890004c1271f8.jpg",
+            "assets/molde_06.png"
+        ],
         tecido: "Tricoline",
         dificuldade: "Fácil",
         acabamento: "Cós Anatômico",
@@ -121,29 +145,43 @@ async function carregarProdutosAPI() {
     return PRODUTOS;
 }
 
-// CADASTRAR NOVO PRODUTO VIA API (ADMIN)
+// CADASTRAR NOVO PRODUTO VIA API (EXCLUSIVO PARA ADMIN)
 async function cadastrarProdutoAPI(novoProduto) {
     const apiUrl = (typeof CONFIG !== 'undefined' && CONFIG.API_BASE_URL) ? CONFIG.API_BASE_URL : "http://localhost:3000/api";
     
-    // Atribuir ID único local
+    // Atribuir ID único local e garantir array de imagens
     novoProduto.id = novoProduto.id || (PRODUTOS.length ? Math.max(...PRODUTOS.map(p => p.id)) + 1 : 1);
+    if (!novoProduto.imagens || !novoProduto.imagens.length) {
+        novoProduto.imagens = [novoProduto.imagem];
+    }
     
+    const headers = typeof obterHeadersAuth === 'function' ? obterHeadersAuth() : { 'Content-Type': 'application/json' };
+
     try {
         const res = await fetch(`${apiUrl}/produtos`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: headers,
             body: JSON.stringify(novoProduto)
         });
+
         if (res.ok) {
             const itemCriado = await res.json();
             const prodFinal = itemCriado.produto || novoProduto;
             PRODUTOS.push(prodFinal);
-            return prodFinal;
+            return { ok: true, produto: prodFinal };
+        } else if (res.status === 403 || res.status === 401) {
+            const errData = await res.json().catch(() => ({}));
+            const msg = errData.mensagem || 'Acesso negado. Apenas administradores podem cadastrar produtos.';
+            alert(`⚠️ ${msg}`);
+            return { ok: false, mensagem: msg };
+        } else {
+            const errData = await res.json().catch(() => ({}));
+            throw new Error(errData.mensagem || 'Erro ao salvar produto no servidor.');
         }
     } catch(e) {
-        console.warn('Salvando novo produto localmente no catálogo:', e.message);
+        console.warn('Servidor API indisponível. Salvando novo produto localmente no catálogo:', e.message);
+        PRODUTOS.push(novoProduto);
+        return { ok: true, produto: novoProduto, local: true };
     }
-
-    PRODUTOS.push(novoProduto);
-    return novoProduto;
 }
+

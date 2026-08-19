@@ -11,22 +11,44 @@ function obterUsuarioLogado() {
     }
 }
 
-function salvarUsuarioLogado(usuario) {
-    // Garante que todo novo usuário possua uma role padrão 'user' se não especificada
+function obterTokenLogado() {
+    return localStorage.getItem('auth_token') || '';
+}
+
+function salvarUsuarioLogado(usuario, token = null) {
     if (!usuario.role) {
         usuario.role = 'user';
     }
     localStorage.setItem('usuario_logado', JSON.stringify(usuario));
+    if (token) {
+        localStorage.setItem('auth_token', token);
+    }
 }
 
 function fazerLogout() {
     localStorage.removeItem('usuario_logado');
+    localStorage.removeItem('auth_token');
     window.location.reload();
+}
+
+// Obter cabeçalhos HTTP com token de autenticação JWT e fallback para testes de role
+function obterHeadersAuth() {
+    const headers = { 'Content-Type': 'application/json' };
+    const token = obterTokenLogado();
+    const usuario = obterUsuarioLogado();
+
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+    }
+    if (usuario && usuario.role) {
+        headers['x-user-role'] = usuario.role;
+    }
+    return headers;
 }
 
 // Alternar role para testes locais no navegador
 function alternarRoleParaTestes(novaRole) {
-    const u = obterUsuarioLogado() || { nome: 'Usuário Teste', email: 'teste@atelie.com' };
+    const u = obterUsuarioLogado() || { nome: novaRole === 'admin' ? 'Administrador' : 'Usuário Teste', email: `${novaRole}@atelie.com` };
     u.role = novaRole;
     salvarUsuarioLogado(u);
     window.location.reload();
@@ -43,18 +65,20 @@ async function realizarLoginAPI(email, senha) {
         
         if (response.ok) {
             const data = await response.json();
-            salvarUsuarioLogado(data.usuario || { nome: email.split('@')[0], email, role: data.role || 'user' });
-            return { ok: true, user: data.usuario };
+            const usuarioObj = data.usuario || { nome: email.split('@')[0], email, role: data.role || 'user' };
+            salvarUsuarioLogado(usuarioObj, data.token);
+            return { ok: true, user: usuarioObj };
         } else {
             const errData = await response.json().catch(() => ({}));
             throw new Error(errData.mensagem || 'Falha no login');
         }
     } catch (error) {
-        console.warn('Servidor API não alcançado. Usando modo de autenticação local:', error.message);
-        // Fallback local caso o servidor Express ainda esteja sendo iniciado pelo usuário
+        console.warn('Servidor API não alcançado ou erro no login. Usando modo local:', error.message);
+        // Fallback local caso o servidor Express ainda esteja sendo iniciado
+        const roleDefinida = email.includes('admin') ? 'admin' : 'user';
         const nome = email.split('@')[0];
         const nomeFormatado = nome.charAt(0).toUpperCase() + nome.slice(1);
-        const usuarioLocal = { nome: nomeFormatado, email: email, role: 'user' };
+        const usuarioLocal = { nome: nomeFormatado, email: email, role: roleDefinida };
         salvarUsuarioLogado(usuarioLocal);
         return { ok: true, user: usuarioLocal, fallback: true };
     }
@@ -71,15 +95,15 @@ async function realizarCadastroAPI(nome, email, senha) {
         
         if (response.ok) {
             const data = await response.json();
-            salvarUsuarioLogado(data.usuario || { nome, email, role: 'user' });
-            return { ok: true, user: data.usuario };
+            const usuarioObj = data.usuario || { nome, email, role: 'user' };
+            salvarUsuarioLogado(usuarioObj, data.token);
+            return { ok: true, user: usuarioObj };
         } else {
             const errData = await response.json().catch(() => ({}));
             throw new Error(errData.mensagem || 'Falha no cadastro');
         }
     } catch (error) {
         console.warn('Servidor API não alcançado. Usando modo de cadastro local:', error.message);
-        // Fallback local
         const usuarioLocal = { nome: nome || 'Costureira', email: email, role: 'user' };
         salvarUsuarioLogado(usuarioLocal);
         return { ok: true, user: usuarioLocal, fallback: true };
@@ -144,3 +168,4 @@ function renderizarNavGlobal(pathPrefix = '') {
         </div>
     `;
 }
+

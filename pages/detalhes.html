@@ -29,9 +29,26 @@
 
         <div class="card-detalhe">
 
-            <!-- IMAGEM DA PEÇA -->
-            <div class="imagem-container">
-                <img id="produto-img" src="" alt="Imagem do Molde">
+            <!-- IMAGEM DA PEÇA / CARROSSEL INTERATIVO -->
+            <div class="galeria-container">
+                <div class="imagem-container" id="carrossel-wrapper">
+                    <!-- Badge indicativa do slide -->
+                    <span class="slide-badge" id="slide-badge">👗 Peça Pronta</span>
+
+                    <div class="carrossel-slides" id="carrossel-slides">
+                        <img id="produto-img" src="" alt="Imagem do Molde">
+                    </div>
+
+                    <!-- Botões de Navegação -->
+                    <button class="carrossel-btn prev" id="btn-prev" aria-label="Imagem Anterior">‹</button>
+                    <button class="carrossel-btn next" id="btn-next" aria-label="Próxima Imagem">›</button>
+
+                    <!-- Indicadores (Dots) -->
+                    <div class="carrossel-indicadores" id="carrossel-indicadores"></div>
+                </div>
+
+                <!-- Miniaturas de navegação rápida -->
+                <div class="carrossel-miniaturas" id="carrossel-miniaturas"></div>
             </div>
 
             <!-- INFORMAÇÕES TÉCNICAS E MEDIDAS -->
@@ -81,8 +98,6 @@
                     </ul>
                 </div>
 
-
-
             </div>
 
         </div>
@@ -90,7 +105,7 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             // Renderizar Navegação Global
             renderizarNavGlobal('../');
 
@@ -98,21 +113,131 @@
             const params = new URLSearchParams(window.location.search);
             const produtoId = parseInt(params.get('id')) || 1;
 
-            // Buscar produto na base central PRODUTOS
-            const produto = PRODUTOS.find(p => p.id === produtoId) || PRODUTOS[0];
+            // Carregar produtos da API (ou fallback local)
+            const listaProdutos = await carregarProdutosAPI();
+            const produto = listaProdutos.find(p => p.id === produtoId) || listaProdutos[0] || PRODUTOS[0];
 
             // Atualizar elementos da página
             document.title = `${produto.nome} - Ficha Técnica | Ateliê & Linha`;
             document.getElementById('header-subtitulo').textContent = `Ficha Técnica: ${produto.nome}`;
-            
-            const imgEl = document.getElementById('produto-img');
-            imgEl.src = produto.imagem;
-            imgEl.alt = produto.nome;
 
             document.getElementById('produto-nome').textContent = produto.nome;
             document.getElementById('produto-descricao').textContent = produto.descricao;
             document.getElementById('detalhe-tecido').textContent = produto.detalhesTecido || produto.tecido;
             document.getElementById('detalhe-acabamento').textContent = produto.detalhesAcabamento || produto.acabamento;
+
+            // === LÓGICA DO CARROSSEL DE IMAGENS (FOTO DA ROUPA + MOLDE) ===
+            const listaImagens = (produto.imagens && produto.imagens.length > 0) 
+                ? produto.imagens 
+
+                : [produto.imagem];
+
+            const resolverCaminho = (url) => {
+                if (url.startsWith('assets/')) {
+                    return '../' + url;
+                }
+                return url;
+            };
+
+            const slidesContainer = document.getElementById('carrossel-slides');
+            const indicadoresContainer = document.getElementById('carrossel-indicadores');
+            const miniaturasContainer = document.getElementById('carrossel-miniaturas');
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const slideBadge = document.getElementById('slide-badge');
+
+            let slideAtual = 0;
+
+            function renderizarCarrossel() {
+                slidesContainer.innerHTML = '';
+                indicadoresContainer.innerHTML = '';
+                miniaturasContainer.innerHTML = '';
+
+                listaImagens.forEach((imgUrl, index) => {
+                    const src = resolverCaminho(imgUrl);
+
+                    // Slide principal
+                    const imgEl = document.createElement('img');
+                    imgEl.src = src;
+                    imgEl.alt = `${produto.nome} - Imagem ${index + 1}`;
+                    imgEl.className = `slide-img ${index === 0 ? 'active' : ''}`;
+                    slidesContainer.appendChild(imgEl);
+
+                    // Indicador (dot)
+                    const dot = document.createElement('button');
+                    dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                    dot.setAttribute('aria-label', `Ir para imagem ${index + 1}`);
+                    dot.addEventListener('click', () => irParaSlide(index));
+                    indicadoresContainer.appendChild(dot);
+
+                    // Miniatura (thumb)
+                    const thumb = document.createElement('div');
+                    thumb.className = `thumb ${index === 0 ? 'active' : ''}`;
+                    thumb.innerHTML = `<img src="${src}" alt="Thumb ${index + 1}">`;
+                    thumb.addEventListener('click', () => irParaSlide(index));
+                    miniaturasContainer.appendChild(thumb);
+                });
+
+                if (listaImagens.length <= 1) {
+                    btnPrev.style.display = 'none';
+                    btnNext.style.display = 'none';
+                    indicadoresContainer.style.display = 'none';
+                    miniaturasContainer.style.display = 'none';
+                    slideBadge.style.display = 'none';
+                } else {
+                    btnPrev.style.display = 'flex';
+                    btnNext.style.display = 'flex';
+                    indicadoresContainer.style.display = 'flex';
+                    miniaturasContainer.style.display = 'flex';
+                    slideBadge.style.display = 'inline-block';
+                }
+
+                atualizarExibicaoSlide();
+            }
+
+            function irParaSlide(index) {
+                slideAtual = index;
+                if (slideAtual < 0) slideAtual = listaImagens.length - 1;
+                if (slideAtual >= listaImagens.length) slideAtual = 0;
+                atualizarExibicaoSlide();
+            }
+
+            function atualizarExibicaoSlide() {
+                const slides = slidesContainer.querySelectorAll('.slide-img');
+                const dots = indicadoresContainer.querySelectorAll('.dot');
+                const thumbs = miniaturasContainer.querySelectorAll('.thumb');
+
+                slides.forEach((slide, idx) => {
+                    slide.classList.toggle('active', idx === slideAtual);
+                });
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === slideAtual);
+                });
+                thumbs.forEach((thumb, idx) => {
+                    thumb.classList.toggle('active', idx === slideAtual);
+                });
+
+                if (slideBadge) {
+                    const srcAtual = listaImagens[slideAtual] || '';
+                    if (srcAtual.includes('molde') || slideAtual === 1) {
+                        slideBadge.textContent = '📐 Molde de Costura';
+                        slideBadge.classList.add('badge-molde');
+                    } else {
+                        slideBadge.textContent = '👗 Peça Pronta';
+                        slideBadge.classList.remove('badge-molde');
+                    }
+                }
+            }
+
+            btnPrev.addEventListener('click', () => irParaSlide(slideAtual - 1));
+            btnNext.addEventListener('click', () => irParaSlide(slideAtual + 1));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') irParaSlide(slideAtual - 1);
+                if (e.key === 'ArrowRight') irParaSlide(slideAtual + 1);
+            });
+
+            renderizarCarrossel();
 
             // Tags
             const tagsContainer = document.getElementById('produto-tags');
