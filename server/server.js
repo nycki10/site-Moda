@@ -13,6 +13,26 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+// Middleware de Inicialização Lazy do Banco de Dados (Essencial para Vercel Serverless)
+let dbInitialized = false;
+let dbInitPromise = null;
+
+app.use(async (req, res, next) => {
+    if (!dbInitialized) {
+        if (!dbInitPromise) {
+            dbInitPromise = initDatabase()
+                .then(() => {
+                    dbInitialized = true;
+                })
+                .catch((err) => {
+                    console.error('⚠️ Erro ao inicializar DB (usando fallback em memória):', err.message);
+                });
+        }
+        await dbInitPromise;
+    }
+    next();
+});
+
 // Rotas da API
 app.use('/api', authRoutes);
 app.use('/api', produtoRoutes);
@@ -22,16 +42,13 @@ app.get('/api/status', (req, res) => {
     res.json({
         status: 'online',
         aplicacao: 'Ateliê & Linha API',
-        banco: 'MySQL',
+        ambiente: process.env.VERCEL ? 'Vercel Serverless' : 'Node.js Local',
         timestamp: new Date().toISOString()
     });
 });
 
-// Inicialização do Banco de Dados e Servidor
-async function startServer() {
-    console.log('⏳ Inicializando conexão com o banco de dados MySQL...');
-    await initDatabase();
-
+// Inicialização para ambiente local (fora da Vercel)
+if (!process.env.VERCEL) {
     app.listen(PORT, () => {
         console.log(`
 ======================================================
@@ -45,4 +62,5 @@ async function startServer() {
     });
 }
 
-startServer();
+// Export para Vercel Serverless Function
+module.exports = app;

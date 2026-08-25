@@ -127,12 +127,12 @@
             document.getElementById('detalhe-acabamento').textContent = produto.detalhesAcabamento || produto.acabamento;
 
             // === LÓGICA DO CARROSSEL DE IMAGENS (FOTO DA ROUPA + MOLDE) ===
-            const listaImagens = (produto.imagens && produto.imagens.length > 0) 
-                ? produto.imagens 
-
-                : [produto.imagem];
+            const listaImagens = (produto.imagens && Array.isArray(produto.imagens) && produto.imagens.filter(Boolean).length > 0) 
+                ? produto.imagens.filter(Boolean) 
+                : (produto.imagem ? [produto.imagem] : ['https://placehold.co/400x500/f5e6e8/8b4513?text=Sem+Imagem']);
 
             const resolverCaminho = (url) => {
+                if (!url) return 'https://placehold.co/400x500/f5e6e8/8b4513?text=Sem+Imagem';
                 if (url.startsWith('assets/')) {
                     return '../' + url;
                 }

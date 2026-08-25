@@ -6,12 +6,23 @@ const { autenticarToken, requererAdmin } = require('../middlewares/authMiddlewar
 // Função utilitária para tratar o objeto de produto retornado do MySQL
 function formatarProduto(p) {
     if (!p) return null;
+    let listaImagens = null;
+    if (p.imagens) {
+        try {
+            listaImagens = typeof p.imagens === 'string' ? JSON.parse(p.imagens) : p.imagens;
+        } catch(e) {
+            listaImagens = null;
+        }
+    } else if (p.imagem) {
+        listaImagens = [p.imagem];
+    }
+
     return {
         id: p.id,
         nome: p.nome,
         categoria: p.categoria,
-        imagem: p.imagem,
-        imagens: typeof p.imagens === 'string' ? JSON.parse(p.imagens) : p.imagens,
+        imagem: p.imagem || null,
+        imagens: listaImagens,
         tecido: p.tecido,
         dificuldade: p.dificuldade,
         acabamento: p.acabamento,
@@ -67,11 +78,18 @@ router.post('/produtos', autenticarToken, requererAdmin, async (req, res) => {
             medidas
         } = req.body;
 
-        if (!nome || !imagem || !tecido) {
-            return res.status(400).json({ mensagem: 'Os campos nome, imagem e tecido são obrigatórios.' });
+        if (!nome || !tecido) {
+            return res.status(400).json({ mensagem: 'Os campos nome e tecido são obrigatórios.' });
         }
 
-        const listaImagens = (Array.isArray(imagens) && imagens.length > 0) ? imagens : [imagem];
+        const imgPrincipal = imagem || null;
+        let listaImagens = null;
+        if (Array.isArray(imagens) && imagens.length > 0) {
+            listaImagens = imagens;
+        } else if (imgPrincipal) {
+            listaImagens = [imgPrincipal];
+        }
+
         const tabelaMedidas = (Array.isArray(medidas) && medidas.length > 0) ? medidas : [
             { tamanho: "P", busto: "88 cm", cintura: "68 cm", quadril: "94 cm" },
             { tamanho: "M", busto: "92 cm", cintura: "72 cm", quadril: "98 cm" },
@@ -85,8 +103,8 @@ router.post('/produtos', autenticarToken, requererAdmin, async (req, res) => {
         `, [
             nome,
             categoria || 'Outras Peças',
-            imagem,
-            JSON.stringify(listaImagens),
+            imgPrincipal,
+            listaImagens ? JSON.stringify(listaImagens) : null,
             tecido,
             dificuldade || 'Média',
             acabamento || 'Padrão',
@@ -100,7 +118,7 @@ router.post('/produtos', autenticarToken, requererAdmin, async (req, res) => {
             id: result.insertId,
             nome,
             categoria: categoria || 'Outras Peças',
-            imagem,
+            imagem: imgPrincipal,
             imagens: listaImagens,
             tecido,
             dificuldade: dificuldade || 'Média',
@@ -136,6 +154,12 @@ router.put('/produtos/:id', autenticarToken, requererAdmin, async (req, res) => 
             return res.status(404).json({ mensagem: 'Produto não encontrado.' });
         }
 
+        // Se atualizou 'imagem' mas não enviou 'imagens', gerar lista com a nova imagem
+        let novasImagens = imagens;
+        if (imagem && !imagens) {
+            novasImagens = [imagem];
+        }
+
         await pool.query(`
             UPDATE produtos SET 
                 nome = COALESCE(?, nome),
@@ -154,7 +178,7 @@ router.put('/produtos/:id', autenticarToken, requererAdmin, async (req, res) => 
             nome,
             categoria,
             imagem,
-            imagens ? JSON.stringify(imagens) : null,
+            novasImagens ? JSON.stringify(novasImagens) : null,
             tecido,
             dificuldade,
             acabamento,

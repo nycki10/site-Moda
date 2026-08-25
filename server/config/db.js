@@ -2,11 +2,14 @@ const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
+const useSSL = process.env.DB_SSL === 'true' || (process.env.DB_HOST && process.env.DB_HOST !== 'localhost' && process.env.DB_HOST !== '127.0.0.1');
+
 const dbConfig = {
     host: process.env.DB_HOST || 'localhost',
     port: parseInt(process.env.DB_PORT || '3306'),
     user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || 'root'
+    password: process.env.DB_PASS || 'root',
+    ...(useSSL ? { ssl: { rejectUnauthorized: false } } : {})
 };
 
 let pool = null;
@@ -19,11 +22,8 @@ const memoriaProdutos = [
         id: 1,
         nome: "Vestido Evasê Floral",
         categoria: "Vestidos",
-        imagem: "https://i.pinimg.com/736x/bc/61/ff/bc61ff7ecf46c82d25eab5fcf1369aa2.jpg",
-        imagens: JSON.stringify([
-            "https://i.pinimg.com/736x/bc/61/ff/bc61ff7ecf46c82d25eab5fcf1369aa2.jpg",
-            "assets/molde_01.png"
-        ]),
+        imagem: null,
+        imagens: null,
         tecido: "Algodão",
         dificuldade: "Média",
         acabamento: "Zíper Invisível",
@@ -40,11 +40,8 @@ const memoriaProdutos = [
         id: 2,
         nome: "Vestido de Festa Longo",
         categoria: "Vestidos",
-        imagem: "https://i.pinimg.com/1200x/18/fa/55/18fa55ae01b7ea8a26e3580142100361.jpg",
-        imagens: JSON.stringify([
-            "https://i.pinimg.com/1200x/18/fa/55/18fa55ae01b7ea8a26e3580142100361.jpg",
-            "assets/molde_02.png"
-        ]),
+        imagem: null,
+        imagens: null,
         tecido: "Cetim / Seda",
         dificuldade: "Alta",
         acabamento: "Com Forro",
@@ -61,11 +58,8 @@ const memoriaProdutos = [
         id: 3,
         nome: "Vestido Casual Midi",
         categoria: "Vestidos",
-        imagem: "https://i.pinimg.com/736x/2f/76/ab/2f76ab356407430b0e4c78ad18c03345.jpg",
-        imagens: JSON.stringify([
-            "https://i.pinimg.com/736x/2f/76/ab/2f76ab356407430b0e4c78ad18c03345.jpg",
-            "assets/molde_03.png"
-        ]),
+        imagem: null,
+        imagens: null,
         tecido: "Viscose",
         dificuldade: "Fácil",
         acabamento: "Lastex nas Costas",
@@ -82,11 +76,8 @@ const memoriaProdutos = [
         id: 4,
         nome: "Blusa Gola Alta",
         categoria: "Outras Peças",
-        imagem: "https://i.pinimg.com/1200x/e3/f7/b1/e3f7b178ac74846002982e3bfb8bd6e0.jpg",
-        imagens: JSON.stringify([
-            "https://i.pinimg.com/1200x/e3/f7/b1/e3f7b178ac74846002982e3bfb8bd6e0.jpg",
-            "assets/molde_04.png"
-        ]),
+        imagem: null,
+        imagens: null,
         tecido: "Malha",
         dificuldade: "Fácil",
         acabamento: "Manga Longa",
@@ -103,11 +94,8 @@ const memoriaProdutos = [
         id: 5,
         nome: "Calça Alfaiataria",
         categoria: "Outras Peças",
-        imagem: "https://i.pinimg.com/736x/4a/91/cb/4a91cbb24acd4619fb7edf6c7b3ec20a.jpg",
-        imagens: JSON.stringify([
-            "https://i.pinimg.com/736x/4a/91/cb/4a91cbb24acd4619fb7edf6c7b3ec20a.jpg",
-            "assets/molde_05.png"
-        ]),
+        imagem: null,
+        imagens: null,
         tecido: "Linho",
         dificuldade: "Alta",
         acabamento: "Com Bolsos",
@@ -124,11 +112,8 @@ const memoriaProdutos = [
         id: 6,
         nome: "Saia Longa Jeans",
         categoria: "Outras Peças",
-        imagem: "https://i.pinimg.com/736x/3e/9d/a3/3e9da360e240bd4b73a890004c1271f8.jpg",
-        imagens: JSON.stringify([
-            "https://i.pinimg.com/736x/3e/9d/a3/3e9da360e240bd4b73a890004c1271f8.jpg",
-            "assets/molde_06.png"
-        ]),
+        imagem: null,
+        imagens: null,
         tecido: "Tricoline",
         dificuldade: "Fácil",
         acabamento: "Cós Anatômico",
@@ -186,8 +171,8 @@ async function initDatabase() {
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 nome VARCHAR(255) NOT NULL,
                 categoria VARCHAR(100) NOT NULL,
-                imagem TEXT NOT NULL,
-                imagens JSON NOT NULL,
+                imagem TEXT DEFAULT NULL,
+                imagens JSON DEFAULT NULL,
                 tecido VARCHAR(100) NOT NULL,
                 dificuldade VARCHAR(50) NOT NULL,
                 acabamento VARCHAR(100) NOT NULL,
@@ -281,6 +266,27 @@ const poolProxy = {
             };
             memoriaProdutos.push(novoProd);
             return [{ insertId: novoId }];
+        }
+
+        if (sqlUpper.includes('UPDATE PRODUTOS')) {
+            const idTarget = parseInt(params[params.length - 1]);
+            const prod = memoriaProdutos.find(p => p.id === idTarget);
+            if (prod) {
+                const [nome, categoria, imagem, imagens, tecido, dificuldade, acabamento, detalhesTecido, detalhesAcabamento, descricao, medidas] = params;
+                if (nome !== null && nome !== undefined) prod.nome = nome;
+                if (categoria !== null && categoria !== undefined) prod.categoria = categoria;
+                if (imagem !== null && imagem !== undefined) prod.imagem = imagem;
+                if (imagens !== null && imagens !== undefined) prod.imagens = imagens;
+                if (tecido !== null && tecido !== undefined) prod.tecido = tecido;
+                if (dificuldade !== null && dificuldade !== undefined) prod.dificuldade = dificuldade;
+                if (acabamento !== null && acabamento !== undefined) prod.acabamento = acabamento;
+                if (detalhesTecido !== null && detalhesTecido !== undefined) prod.detalhesTecido = detalhesTecido;
+                if (detalhesAcabamento !== null && detalhesAcabamento !== undefined) prod.detalhesAcabamento = detalhesAcabamento;
+                if (descricao !== null && descricao !== undefined) prod.descricao = descricao;
+                if (medidas !== null && medidas !== undefined) prod.medidas = medidas;
+                return [{ affectedRows: 1 }];
+            }
+            return [{ affectedRows: 0 }];
         }
 
         if (sqlUpper.includes('DELETE FROM PRODUTOS')) {

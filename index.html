@@ -179,7 +179,7 @@
             produtos.forEach(p => {
                 htmlFinal += `
                     <div class="card-roupa">
-                        <img src="${p.imagem}" alt="${p.nome}">
+                        <img src="${p.imagem || 'https://placehold.co/400x500/f5e6e8/8b4513?text=Sem+Imagem'}" alt="${p.nome}" onerror="this.onerror=null; this.src='https://placehold.co/400x500/f5e6e8/8b4513?text=Sem+Imagem';">
 
                         <div class="detalhes-roupa">
                             <h3>${p.nome}</h3>
