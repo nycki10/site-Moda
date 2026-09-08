@@ -3,243 +3,583 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ateliê & Linha | Catálogo de Moldes e Modelagem de Moda</title>
-
+    <title>Ateliê & Linha | Moldes e Modelagem de Moda</title>
+    <!-- CSS PRINCIPAL -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Scripts da Aplicação -->
+
+    <!-- JAVASCRIPT -->
     <script src="js/config.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/produtos.js"></script>
 </head>
 <body>
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
 
-<!-- BARRA DE NAVEGAÇÃO GLOBAL -->
-<nav id="nav-global" class="nav-global"></nav>
+    <nav class="nav-global">
+        <div class="nav-container">
+            <!-- LOGO -->
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Ateliê & Linha - Croqui, Modelagem e Costura">
+            </a>
 
-<header>
-    <h1>🧵 Ateliê & Linha</h1>
-    <p>Catálogo de Moldes, Fichas Técnicas e Inspirações para Costura</p>
-</header>
+            <!-- MENU -->
+            <div class="nav-links">
 
-<div class="container">
+                <a href="index.html" class="nav-link">
+                    <span>⌂</span>
+                    Início
+                </a>
 
-    <!-- BANNER GLOBAL DO ESTÚDIO DE IA E MODELAGEM -->
-    <section class="banner-estudio">
-        <div class="banner-estudio-info">
-            <h2>✨ Estúdio Interativo de Modelagem & Criação por IA</h2>
-            <p>Personalize golas, mangas, saias, tecidos e cores em tempo real no nosso croqui virtual, e gere ilustrações exclusivas através da inteligência artificial (OpenAI).</p>
-        </div>
-        <a href="pages/molde.html" class="btn-estudio">
-            ✂️ Acessar Criador de Moldes com IA →
-        </a>
-    </section>
+                <a href="pages/moldes.html" class="nav-link">
+                    <span>♧</span>
+                    Moldes
+                </a>
 
-    <!-- CONTAINER DINÂMICO DE CATEGORIAS E ROUPAS -->
-    <div id="catalogo-container">
-        <!-- Renderizado dinamicamente via JS a partir de produtos.js / API -->
-    </div>
+                <a href="pages/croquis.html" class="nav-link">
+                    <span>♙</span>
+                    Croquis
+                </a>
 
-    <!-- SEÇÃO "SOBRE O ATELIÊ & LINHA" -->
-    <section class="secao-sobre">
-        <div class="sobre-conteudo">
-            <h2>🧵 Sobre o Ateliê & Linha</h2>
-            <p>O <strong>Ateliê & Linha</strong> é uma plataforma digital desenvolvida para costureiras, modelistas, estilistas e entusiastas da moda. Nossa missão é facilitar o processo de criação de roupas, unindo a precisão dos moldes de costura tradicionais com a inovação da Inteligência Artificial.</p>
-            
-            <div class="sobre-grid">
-                <div class="sobre-card">
-                    <span class="sobre-icone">📐</span>
-                    <h3>Fichas Técnicas & Medidas</h3>
-                    <p>Consulte especificações de tecidos, graus de dificuldade, acabamentos e tabelas de medidas padronizadas para cada modelo.</p>
-                </div>
-                <div class="sobre-card">
-                    <span class="sobre-icone">👗</span>
-                    <h3>Croqui Interativo</h3>
-                    <p>Monte combinações de golas, mangas, comprimentos e cores em tempo real com visualização imediata no manequim virtual.</p>
-                </div>
-                <div class="sobre-card">
-                    <span class="sobre-icone">✨</span>
-                    <h3>Ilustrações por IA</h3>
-                    <p>Transforme suas seleções de moda em ilustrações realistas de alta definição através da tecnologia de ponta da OpenAI.</p>
-                </div>
+                <a href="pages/inspiracoes.html" class="nav-link">
+                    <span>✧</span>
+                    Inspirações
+                </a>
+
+                <a href="pages/guia.html" class="nav-link">
+                    <span>▤</span>
+                    Guia
+                </a>
+
+                <a href="pages/login.html" class="nav-link">
+                    <span>♙</span>
+                    Minha Conta
+                </a>
+
+                <!-- BOTÃO CORRETO PARA O MOLDE -->
+                <a href="pages/molde.html" class="btn-nav-login">
+                    ✂ Criar meu modelo
+                </a>
             </div>
         </div>
-    </section>
+    </nav>
 
-</div>
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
 
-<!-- MODAL DE CADASTRO DE NOVO MOLDE (ADMIN) -->
-<div id="modal-novo-produto" class="modal-backdrop">
-    <div class="modal-card">
-        <div class="modal-header">
-            <h2>🛡️ Cadastrar Novo Molde no Catálogo (Admin)</h2>
-            <button onclick="fecharModalNovoProduto()" class="btn-fechar-modal">✕</button>
-        </div>
+    <main>
+        <!-- =================================================
+             HERO
+        ================================================== -->
+        <section class="hero">
+            <div class="hero-content">
 
-        <form id="form-novo-produto" class="form-grid-modal">
-            <div class="campo-grupo col-full">
-                <label for="admin-nome">Nome da Peça / Molde:</label>
-                <input type="text" id="admin-nome" required placeholder="Ex: Vestido Tubinho Elegante">
+                <!-- TEXTO -->
+                <div class="hero-copy">
+                    <span class="hero-small">
+                        ATELIÊ & LINHA
+                    </span>
+
+                    <h1>
+                        Sua ideia:<br>
+                        <strong>
+                            nosso molde,
+                        </strong>
+                        <br>
+                        <em>
+                            sua história.
+                        </em>
+                    </h1>
+
+                    <p>
+                        Crie, modele e costure peças únicas com
+                        o Ateliê & Linha. Inspire-se na moda,
+                        desenhe seu croqui e transforme suas
+                        ideias em roupas reais.
+                    </p>
+
+                    <!-- BOTÕES -->
+                    <div class="hero-buttons">
+                        <!-- CORRETO -->
+                        <a href="pages/molde.html" class="btn-primary">
+                            ✂ Começar a criar
+                        </a>
+
+                        <a href="pages/moldes.html" class="btn-secondary">
+                            Ver catálogo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- VISUAL DO HERO -->
+
+                <div class="hero-visual">
+                    <div class="hero-circle circle-one"></div>
+                    <div class="hero-circle circle-two"></div>
+
+                    <div class="hero-card">
+
+                        <div class="dress-illustration">
+                            <div class="dress-head"></div>
+                            <div class="dress-body"></div>
+                            <div class="dress-skirt"></div>
+                        </div>
+
+                        <div class="mannequin">
+                            <div class="mannequin-head"></div>
+                            <div class="mannequin-body"></div>
+                            <div class="mannequin-base"></div>
+                        </div>
+                        <span class="fashion-note">
+                            MODA É EXPRESSÃO
+                        </span>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="campo-grupo">
-                <label for="admin-categoria">Categoria:</label>
-                <select id="admin-categoria">
-                    <option value="Vestidos">Vestidos</option>
-                    <option value="Outras Peças">Outras Peças</option>
-                </select>
+        <!-- =================================================
+             ETAPAS
+        ================================================== -->
+
+        <section class="steps-section">
+            <div class="steps-grid">
+                <article class="step-card">
+                    <div class="step-icon">
+                        ♙
+                    </div>
+                    <h3>
+                        Escolha<br>
+                        a Silhueta
+                    </h3>
+                    <p>
+                        A-line, evasê, sereia e muito mais.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <div class="step-icon">
+                        ▱
+                    </div>
+
+                    <h3>
+                        Defina<br>
+                        o Tecido
+                    </h3>
+
+                    <p>
+                        Veja combinações e sugestões.
+                    </p>
+
+                </article>
+
+                <article class="step-card">
+                    <div class="step-icon">
+                        ⌁
+                    </div>
+                    <h3>
+                        Ajuste<br>
+                        as Medidas
+                    </h3>
+                    <p>
+                        Tabelas e guias completos.
+                    </p>
+                </article>
+
+                <article class="step-card">
+                    <div class="step-icon">
+                        💡
+                    </div>
+
+                    <h3>
+                        Gere<br>
+                        Ilustração
+                    </h3>
+                    <p>
+                        Crie seu croqui exclusivo.
+                    </p>
+
+                </article>
+
+                <article class="step-card">
+                    <div class="step-icon">
+                        ⚙
+                    </div>
+
+                    <h3>
+                        Costure<br>
+                        sua Peça
+                    </h3>
+
+                    <p>
+                        Transforme seu croqui em realidade.
+                    </p>
+                </article>
             </div>
+            <!-- =================================================
+             MODA ATRAVÉS DO TEMPO
+        ================================================== -->
+            <section class="timeline-section">
+                <div class="timeline-decoration timeline-decoration-left"></div>
+                <div class="timeline-decoration timeline-decoration-right"></div>
 
-            <div class="campo-grupo">
-                <label for="admin-tecido">Tecido Recomendado:</label>
-                <input type="text" id="admin-tecido" required placeholder="Ex: Tricoline / Viscose">
-            </div>
+                <div class="section-heading timeline-heading">
+                    <span class="heading-line heading-line-left"></span>
+                    <div>
+                        <span class="timeline-kicker">ESTILO • HISTÓRIA • CRIATIVIDADE</span>
+                        <h2>Moda através do tempo</h2>
+                        <p>O passado inspira o presente e guia o seu futuro.</p>
+                    </div>
+                    <span class="heading-line heading-line-right"></span>
+                </div>
 
-            <div class="campo-grupo">
-                <label for="admin-dificuldade">Nível de Dificuldade:</label>
-                <select id="admin-dificuldade">
-                    <option value="Fácil">Fácil</option>
-                    <option value="Média" selected>Média</option>
-                    <option value="Alta">Alta</option>
-                </select>
-            </div>
+                <div class="timeline-layout">
+                    <div class="timeline-side-note timeline-side-note-left">
+                        <span>✦</span>
+                        <strong>ESTILO<br>SEM LIMITES</strong>
+                    </div>
 
-            <div class="campo-grupo">
-                <label for="admin-acabamento">Acabamento:</label>
-                <input type="text" id="admin-acabamento" required placeholder="Ex: Zíper Invisível">
-            </div>
-
-            <div class="campo-grupo col-full">
-                <label for="admin-imagem">URL da Imagem da Peça:</label>
-                <input type="url" id="admin-imagem" required placeholder="https://i.pinimg.com/...">
-            </div>
-
-            <div class="campo-grupo col-full">
-                <label for="admin-descricao">Descrição Técnica:</label>
-                <textarea id="admin-descricao" rows="3" required placeholder="Detalhes do corte, drapeado, fendas e inspiração do modelo..."></textarea>
-            </div>
-
-            <button type="submit" class="btn-salvar-produto col-full">
-                💾 Salvar Molde no Banco de Dados (API)
-            </button>
-        </form>
-    </div>
-</div>
-
-<footer>
-    <p>© 2026 Ateliê & Linha • Todos os direitos reservados. Feito com paixão pela moda e tecnologia.</p>
-</footer>
-
-<script>
-    function abrirModalNovoProduto() {
-        document.getElementById('modal-novo-produto').classList.add('active');
-    }
-
-    function fecharModalNovoProduto() {
-        document.getElementById('modal-novo-produto').classList.remove('active');
-    }
-
-    async function renderizarCatalogo() {
-        const container = document.getElementById('catalogo-container');
-        container.innerHTML = '<p style="text-align:center; padding:20px; color:#b56c6c;">Carregando catálogo de moldes...</p>';
-
-        // Carregar produtos da API MySQL (ou fallback local)
-        const produtosLista = await carregarProdutosAPI();
-
-        if (!produtosLista || !produtosLista.length) {
-            container.innerHTML = '<p style="text-align:center; padding:20px;">Nenhum produto encontrado no catálogo.</p>';
-            return;
-        }
-
-        // Agrupar produtos por categoria
-        const categorias = {};
-        produtosLista.forEach(produto => {
-            if (!categorias[produto.categoria]) {
-                categorias[produto.categoria] = [];
-            }
-            categorias[produto.categoria].push(produto);
-        });
-
-        // Ícones por categoria
-        const iconesCategoria = {
-            'Vestidos': '👗',
-            'Outras Peças': '👚'
-        };
-
-        // Montar HTML dinâmico
-        let htmlFinal = '';
-
-        for (const [categoriaNome, produtos] of Object.entries(categorias)) {
-            const icone = iconesCategoria[categoriaNome] || '✂️';
-            
-            htmlFinal += `
-                <h2 class="categoria-titulo">${icone} ${categoriaNome}</h2>
-                <div class="vitrine-roupas">
-            `;
-
-            produtos.forEach(p => {
-                htmlFinal += `
-                    <div class="card-roupa">
-                        <img src="${p.imagem || 'https://placehold.co/400x500/f5e6e8/8b4513?text=Sem+Imagem'}" alt="${p.nome}" onerror="this.onerror=null; this.src='https://placehold.co/400x500/f5e6e8/8b4513?text=Sem+Imagem';">
-
-                        <div class="detalhes-roupa">
-                            <h3>${p.nome}</h3>
-
-                            <div class="tags">
-                                <span class="tag">Tecido: ${p.tecido}</span>
-                                <span class="tag">Dificuldade: ${p.dificuldade}</span>
-                                <span class="tag">${p.acabamento}</span>
+                    <div class="timeline-grid">
+                        <!-- ANOS 60 -->
+                        <article class="era-card era-60">
+                            <div class="era-visual">
+                                <img src="https://i.pinimg.com/736x/fa/03/a9/fa03a913b49dfb0102da86bfd7e62e02.jpg"
+                                    alt="">
+                                <span class="era-badge">60</span>
+                                <div class="fashion-figure figure-60">
+                                </div>
                             </div>
 
-                            <div class="botoes">
-                                <a href="pages/detalhes.html?id=${p.id}" class="btn-ficha">
-                                    Ver Detalhes do Molde
+                            <div class="era-content">
+                                <span class="era-tag">GEOMETRIA</span>
+                                <h3>Anos 60</h3>
+                                <h4>Geometria</h4>
+                                <p>Formas simples, A-line e muito estilo.</p>
+                            </div>
+                        </article>
+
+                        <!-- ANOS 70 -->
+                        <article class="era-card era-70">
+                            <div class="era-visual">
+                                <span class="era-badge">70</span>
+                                <img src="https://i.pinimg.com/736x/4c/c1/23/4cc123dd6133a47a1cdf1c69268fde18.jpg"
+                                    alt="">
+
+                                <div class="fashion-figure figure-70">
+
+                                </div>
+                            </div>
+
+                            <div class="era-content">
+                                <span class="era-tag">LIBERDADE</span>
+                                <h3>Anos 70</h3>
+                                <h4>Liberdade</h4>
+                                <p>Fluidez, estampas, amarrações e autenticidade.</p>
+                            </div>
+                        </article>
+
+                        <!-- ANOS 80 -->
+                        <article class="era-card era-80">
+                            <div class="era-visual">
+                                <span class="era-badge">80</span>
+                                <img src="https://i.pinimg.com/736x/f1/f5/f3/f1f5f319eea13c36777fd8345f3ab646.jpg"
+                                    alt="">
+                                <div class="fashion-figure figure-80">
+
+                                </div>
+                            </div>
+
+                            <div class="era-content">
+                                <span class="era-tag">ESTRUTURA</span>
+                                <h3>Anos 80</h3>
+                                <h4>Estrutura</h4>
+                                <p>Ombros marcados, alfaiataria e personalidade.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="timeline-side-note timeline-side-note-right">
+                        <p>Vista a moda<br>que você sonha,<br><em>do seu jeito.</em></p>
+                        <div class="tape-measure">
+                            <span>✦</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- =================================================
+             CATÁLOGO
+        ================================================== -->
+
+            <section class="catalogo-section">
+                <div class="catalogo-title">
+                    <div>
+                        <span>
+                            COLEÇÃO ATELIÊ & LINHA
+                        </span>
+
+                        <h2>
+                            Destaques do Catálogo
+                        </h2>
+                    </div>
+
+                    <a href="pages/moldes.html" class="catalogo-link">
+                        Ver todos os moldes →
+                    </a>
+
+                </div>
+
+                <!-- PRODUTOS SERÃO INSERIDOS PELO JS -->
+
+                <div id="catalogo-container">
+                    <p class="catalogo-loading">
+                        Carregando catálogo de moldes...
+                    </p>
+                </div>
+            </section>
+
+            <!-- =================================================
+             SOBRE O ATELIÊ
+        ================================================== -->
+
+            <section class="sobre-section">
+                <div class="sobre-intro">
+                    <span>
+                        CONHEÇA O ATELIÊ
+                    </span>
+
+
+                    <h2>
+                        Vista a moda que você sonha,
+                        <br>
+
+                        <em>
+                            do seu jeito.
+                        </em>
+                    </h2>
+
+                    <p>
+                        O Ateliê & Linha une criatividade,
+                        modelagem e tecnologia em um espaço
+                        pensado para quem ama criar roupas.
+                    </p>
+                </div>
+
+                <div class="sobre-grid">
+                    <article class="sobre-card">
+                        <span>
+                            📐
+                        </span>
+
+                        <h3>
+                            Fichas Técnicas
+                        </h3>
+
+                        <p>
+                            Medidas, tecidos, acabamentos e
+                            informações de cada modelo.
+                        </p>
+                    </article>
+
+
+
+                    <article class="sobre-card">
+                        <span>
+                            👗
+                        </span>
+
+                        <h3>
+                            Croqui Interativo
+                        </h3>
+
+                        <p>
+                            Combine detalhes de moda e
+                            visualize sua ideia.
+                        </p>
+                    </article>
+
+                    <article class="sobre-card">
+                        <span>
+                            ✨
+                        </span>
+
+                        <h3>
+                            Criação por IA
+                        </h3>
+                        <p>
+                            Transforme referências em novas
+                            possibilidades de design.
+                        </p>
+                    </article>
+                </div>
+            </section>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="footer-brand">
+            <img src="logo-atelie-e-linha.png" alt="Ateliê & Linha">
+        </div>
+
+        <p>
+            © 2026 Ateliê & Linha
+            • Croqui
+            • Modelagem
+            • Costura
+        </p>
+
+        <span>
+            Feito com paixão pela moda e tecnologia ♡
+        </span>
+    </footer>
+
+    <!-- =====================================================
+         SCRIPT DO CATÁLOGO
+    ====================================================== -->
+
+    <script>
+        async function renderizarCatalogo() {
+            const container =
+                document.getElementById(
+                    'catalogo-container'
+                );
+
+            container.innerHTML =
+                '<p class="catalogo-loading">' +
+                'Carregando catálogo de moldes...' +
+                '</p>';
+
+            if (
+                typeof carregarProdutosAPI !==
+                'function'
+            ) {
+                container.innerHTML =
+                    '<p class="catalogo-loading">' +
+                    'Não foi possível carregar os moldes.' +
+                    '</p>';
+                return;
+            }
+
+            const produtosLista =
+                await carregarProdutosAPI();
+
+            if (
+                !produtosLista ||
+                !produtosLista.length
+            ) {
+
+                container.innerHTML =
+                    '<p class="catalogo-loading">' +
+                    'Nenhum produto encontrado no catálogo.' +
+                    '</p>';
+                return;
+            }
+
+            const categorias = {};
+
+            produtosLista.forEach(produto => {
+                if (
+                    !categorias[produto.categoria]
+                ) {
+                    categorias[produto.categoria] = [];
+                }
+                categorias[
+                    produto.categoria
+                ].push(produto);
+            });
+            let htmlFinal = '';
+
+            for (
+                const [categoriaNome, produtos]
+                of Object.entries(categorias)
+            ) {
+                htmlFinal += `
+                    <div class="categoria-bloco">
+                        <h3 class="categoria-titulo">
+                            👗 ${categoriaNome}
+                        </h3>
+                        <div class="vitrine-roupas">
+
+                `;
+                produtos.forEach(produto => {
+
+
+                    htmlFinal += `
+
+                        <article class="card-roupa">
+
+                            <div class="card-image-wrap">
+                                <img
+                                    src="${produto.imagem || 'https://placehold.co/400x500/f5e6e8/8b4513?text=Sem+Imagem'}"
+                                    alt="${produto.nome}"
+                                    onerror="this.onerror=null;this.src='https://placehold.co/400x500/f5e6e8/8b4513?text=Sem+Imagem';"
+                                >
+                            </div>
+
+                            <div class="detalhes-roupa">
+                                <span class="card-label">
+                                    ATELIÊ & LINHA
+                                </span>
+
+                                <h4>
+                                    ${produto.nome}
+                                </h4>
+
+                                <div class="tags">
+                                    <span class="tag">
+                                        ${produto.tecido}
+                                    </span>
+
+                                    <span class="tag">
+                                        ${produto.dificuldade}
+                                    </span>
+
+                                    <span class="tag">
+                                        ${produto.acabamento}
+                                    </span>
+                                </div>
+
+                                <!--
+                                    IMPORTANTE:
+                                    detalhes.html está dentro de pages,
+                                    então o link também usa pages/
+                                -->
+                                <a
+                                    href="pages/detalhes.html?id=${produto.id}"
+                                    class="btn-ficha">
+
+                                    Ver detalhes do molde →
                                 </a>
                             </div>
+                        </article>
+                    `;
+                });
+                htmlFinal += `
                         </div>
                     </div>
                 `;
-            });
+            }
+            container.innerHTML = htmlFinal;
 
-            htmlFinal += `</div>`;
         }
 
-        container.innerHTML = htmlFinal;
-    }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // Renderizar Navegação Global
-        renderizarNavGlobal('');
 
-        // Renderizar Catálogo inicial
-        renderizarCatalogo();
+        /* =================================================
+           INICIALIZAÇÃO
+        ================================================== */
 
-        // Handler de envio do novo produto (Admin)
-        document.getElementById('form-novo-produto').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const novoItem = {
-                nome: document.getElementById('admin-nome').value,
-                categoria: document.getElementById('admin-categoria').value,
-                imagem: document.getElementById('admin-imagem').value,
-                tecido: document.getElementById('admin-tecido').value,
-                dificuldade: document.getElementById('admin-dificuldade').value,
-                acabamento: document.getElementById('admin-acabamento').value,
-                descricao: document.getElementById('admin-descricao').value,
-                medidas: [
-                    { tamanho: "P", busto: "88 cm", cintura: "68 cm", quadril: "94 cm" },
-                    { tamanho: "M", busto: "92 cm", cintura: "72 cm", quadril: "98 cm" },
-                    { tamanho: "G", busto: "98 cm", cintura: "78 cm", quadril: "104 cm" }
-                ]
-            };
-
-            await cadastrarProdutoAPI(novoItem);
-            fecharModalNovoProduto();
-            document.getElementById('form-novo-produto').reset();
-            alert(`Novo molde "${novoItem.nome}" cadastrado com sucesso!`);
-            renderizarCatalogo();
-        });
-    });
-</script>
-
+        document.addEventListener(
+            'DOMContentLoaded',
+            () => {
+                renderizarCatalogo();
+            }
+        );
+    </script>
 </body>
 </html>
